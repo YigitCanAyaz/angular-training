@@ -18,9 +18,22 @@ import { Component } from '@angular/core';
   <input type="text" [(ngModel)]="name"/><br/>
   {{name}} -->
 
+
   <!-- Interpolation Syntax -->
-  {{title}}
-  <p>{{person!.name}}</p>
+  <!-- {{title}}
+  <p>{{person!.name}}</p> -->
+
+  <!-- Directives -->
+  <!-- <ul>
+    <li *ngFor="let name of names;
+                let index = index;
+                let first = first">
+                {{name}} - {{index}} - {{first}}
+    </li>
+  </ul> -->
+  <!-- Directive ngIf -->
+  <div *ngIf="visible; else elseContent">İçerik 1</div>
+  <ng-template #elseContent>İçerik 2</ng-template>
   `,
   styleUrls: ['./app.component.scss']
 })
@@ -29,10 +42,17 @@ export class AppComponent {
   // name: string;
 
   // Interpolation Syntax 
-  title: string = "proj3";
-  person : {name : string, surname: string};
+  // title: string = "proj3";
+  // person : {name : string, surname: string};
 
-  onChange($event) {
-    console.log("input değişti!!!");
-  }
+  // Directive Syntax
+  // names: string[] = ["Yiğit", "Can", "Ayaz", "Muhammed", "Rıfkı", "Hilmi"]
+
+  // ngIf
+  visible: boolean = false;
+
+
+  // onChange($event) {
+  //   console.log("input değişti!!!");
+  // }
 }
