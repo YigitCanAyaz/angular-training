@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { Com1Component } from './com1/com1.component';
 import { FormsModule } from '@angular/forms';
+import { ExampleDirective } from './directives/example.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    Com1Component
+    Com1Component,
+    ExampleDirective
   ],
   imports: [
     BrowserModule,
