@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
   // <div style="background-color: aqua;">
   // <app-home></app-home></div>
   // `,
-  template:`
+  template: `
   <!-- property binding -->
   <!-- <input type="text" [value]="title"/>
   <app-home [pageName]="title"></app-home> -->
@@ -34,14 +34,28 @@ import { Component } from '@angular/core';
   <!-- Directive ngIf -->
   <!-- <div *ngIf="visible; else elseContent">İçerik 1</div> -->
   <!-- <ng-template #elseContent>İçerik 2</ng-template> -->
-  <div appExample color="blue">
+  <!-- <div appExample color="blue">
     Merhaba
-  </div>
-  
+  </div> -->
+
+
+  <!--Custom structural if directive -->
+  <!-- <div *appCustomif="true">
+    Merhaba
+</div> -->
+
+<!-- <ul>
+  <li *appCustomfor="5; let i = index">Yiğit {{i}}</li>
+</ul> -->
+
+<ul>
+  <li *appCustomfor="names; let name; let index = index">{{name}} - {{index}}</li>
+</ul>
   `,
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  names: string[] = ["Ahmet", "Yiğit", "Can", "Deniz", "Hilmi", "Hüseyin"]
   // title = 'proj2';
   // name: string;
 
