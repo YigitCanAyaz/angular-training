@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CustomPipe } from './pipes/custom.pipe';
 
 @Component({
   selector: 'app-root',
@@ -47,15 +48,25 @@ import { Component } from '@angular/core';
 <!-- <ul>
   <li *appCustomfor="5; let i = index">Yiğit {{i}}</li>
 </ul> -->
+{{name | slice: 1:3}}
+<br/>
+{{"Bu pipe denemesidir..." | custom: 3:7}}
 
-<ul>
+<!-- <ul>
   <li *appCustomfor="names; let name; let index = index">{{name}} - {{index}}</li>
-</ul>
+</ul> -->
   `,
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  constructor(private custom: CustomPipe){
+    console.log(custom.transform("sddsksddksds", 3, 6));
+  }
   names: string[] = ["Ahmet", "Yiğit", "Can", "Deniz", "Hilmi", "Hüseyin"]
+  
+  // pipe
+  name = 'ahmet';
+  
   // title = 'proj2';
   // name: string;
 
