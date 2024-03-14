@@ -1,10 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-child',
-  templateUrl: './child.component.html',
-  styleUrls: ['./child.component.scss']
-})
-export class ChildComponent {
+  template: `
 
+  <div style="background-color: cadetblue;">
+  <p>child works!</p>
+
+  {{childData}}
+  </div>
+  `
+})
+
+export class ChildComponent {
+  @Input() childData: string;
 }

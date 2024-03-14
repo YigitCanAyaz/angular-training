@@ -3,7 +3,7 @@ import { CustomPipe } from './pipes/custom.pipe';
 
 @Component({
   selector: 'app-root',
-  // templateUrl: './app.component.html',
+  templateUrl: './app.component.html',
   // template: `<p>merhaba</p>
   // <hr>
   // <div style="background-color: aqua;">

@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-parent',
-  templateUrl: './parent.component.html',
-  styleUrls: ['./parent.component.scss']
+  template: `
+  <p>parent works!</p>
+  <app-child [childData]="data"></app-child>
+  `
 })
 export class ParentComponent {
-
+  data: string = "Merhaba";
 }

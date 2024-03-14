@@ -11,7 +11,12 @@ import { CustomifDirective } from './directives/customif.directive';
 import { CustomforDirective } from './directives/customfor.directive';
 import { CustomPipe } from './pipes/custom.pipe';
 import { ParentComponent } from './components/parent_to_child_communication/parent/parent.component';
+import { ParentComponent as ParentComponent2 } from './components/child_to_parent_communication/parent/parent.component';
 import { ChildComponent } from './components/parent_to_child_communication/child/child.component';
+import { ChildComponent as ChildComponent2 } from './components/child_to_parent_communication/child/child.component';
+import { Parent3Component } from './components/child_to_child_communication/parent3/parent3.component';
+import { Childa2Component } from './components/child_to_child_communication/childa2/childa2.component';
+import { Childb2Component } from './components/child_to_child_communication/childb2/childb2.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +28,12 @@ import { ChildComponent } from './components/parent_to_child_communication/child
     CustomforDirective,
     CustomPipe,
     ParentComponent,
-    ChildComponent
+    ParentComponent2,
+    ChildComponent,
+    ChildComponent2,
+    Parent3Component,
+    Childa2Component,
+    Childb2Component
   ],
   imports: [
     BrowserModule,
