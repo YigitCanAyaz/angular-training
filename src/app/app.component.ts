@@ -96,4 +96,6 @@ export class AppComponent {
   // onChange($event) {
   //   console.log("input değişti!!!");
   // }
+
+  // Component Life Cycle Hook
 }
