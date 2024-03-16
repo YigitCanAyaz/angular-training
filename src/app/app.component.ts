@@ -3,7 +3,7 @@ import { CustomPipe } from './pipes/custom.pipe';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  // templateUrl: './app.component.html',
   // template: `<p>merhaba</p>
   // <hr>
   // <div style="background-color: aqua;">
@@ -48,13 +48,15 @@ import { CustomPipe } from './pipes/custom.pipe';
 <!-- <ul>
   <li *appCustomfor="5; let i = index">Yiğit {{i}}</li>
 </ul> -->
-{{name | slice: 1:3}}
+<!-- {{name | slice: 1:3}}
 <br/>
-{{"Bu pipe denemesidir..." | custom: 3:7}}
+{{"Bu pipe denemesidir..." | custom: 3:7}} -->
 
 <!-- <ul>
   <li *appCustomfor="names; let name; let index = index">{{name}} - {{index}}</li>
 </ul> -->
+
+<app-example data="merhaba">Test</app-example>
   `,
   styleUrls: ['./app.component.scss']
 })
