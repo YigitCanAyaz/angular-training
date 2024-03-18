@@ -90,6 +90,46 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 </form>
 <button (click)="ok()">Ok</button>
 Valid : {{frm.valid}}
+<br>
+
+<!-- State Change -->
+
+<button (click)="markAsTouched()">markAsTouched</button><br>
+
+form touched : {{frm.touched}} <br>
+'name' form control touched : {{frm.get("name").touched}} <br>
+'address' form control touched : {{frm.get("address").touched}} <br>
+'country' form control touched : {{frm.get("address").get("country").touched}}
+
+<br>
+
+<button (click)="markAllAsTouched()">markAllAsTouched</button><br>
+<button (click)="markAsUntouched()">markAsUntouched</button><br>
+  
+  
+  <br>
+
+  'name' form control dirty :{{frm.get("name").dirty}}
+
+  <br>
+
+  <button (click)="markAsDirty()">markAsDirty</button><br>
+
+
+  <br>
+
+'name' form control pristine :{{frm.get("name").pristine}}
+
+<br>
+
+<button (click)="markAsPristine()">markAsPristine</button><br>
+
+<button (click)="enable()">enable</button><br>
+
+
+<button (click)="disable()">disable</button><br>
+
+
   `,
   styleUrls: ['./app.component.scss']
 })
@@ -139,12 +179,12 @@ export class AppComponent {
   // @ViewChild("frm", {static:true}) frm:NgForm;
 
   // onSubmit(data){
-    // console.log('Value ' + this.frm.value);
-    // console.log('Valid ' + this.frm.valid);
-    // console.log('Touched ' + this.frm.touched);
-    // console.log('Submitted ' + this.frm.submitted);
-    
-    // console.log(data);
+  // console.log('Value ' + this.frm.value);
+  // console.log('Valid ' + this.frm.valid);
+  // console.log('Touched ' + this.frm.touched);
+  // console.log('Submitted ' + this.frm.submitted);
+
+  // console.log(data);
 
   //   console.log(this.frm);
   //   console.log(this.frm.controls);
@@ -155,7 +195,7 @@ export class AppComponent {
 
   frm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder){
+  constructor(private formBuilder: FormBuilder) {
     this.frm = formBuilder.group({
       name: ["", Validators.required],
       surname: [""],
@@ -183,12 +223,45 @@ export class AppComponent {
     });
   }
 
-  onSubmit(){
+  onSubmit() {
     console.log(this.frm.value);
   }
 
   ok() {
     // this.frm.controls["name"] böyle de erişilebilir.
-    this.frm.get("name").setValue("Gençay", {onlySelf: true});
+    this.frm.get("name").setValue("Gençay", { onlySelf: true });
+  }
+
+  // Change status
+
+  markAsTouched() {
+    // this.frm.markAsTouched();
+    this.frm.get("name").markAsTouched({ onlySelf: true });
+  }
+
+  markAllAsTouched() {
+    // this.frm.markAllAsTouched();
+    this.frm.get("address").markAllAsTouched();
+    // 
+  }
+
+  markAsUntouched() {
+    this.frm.markAsUntouched();
+  }
+
+  markAsDirty() {
+    this.frm.get("name").markAsDirty();
+  }
+
+  markAsPristine() {
+    this.frm.get("name").markAsPristine();
+  }
+
+  disable() {
+    this.frm.get("name").disable();
+  }
+
+  enable() {
+    this.frm.get("name").enable();
   }
 }
