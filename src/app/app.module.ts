@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { Com1Component } from './com1/com1.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExampleDirective } from './directives/example.directive';
 import { CustomifDirective } from './directives/customif.directive';
 import { CustomforDirective } from './directives/customfor.directive';
@@ -40,7 +40,8 @@ import { ExampleComponent } from './components/example/example.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [{provide: DEFAULT_CURRENCY_CODE, useValue: '₺'}, CustomPipe],
   bootstrap: [AppComponent]

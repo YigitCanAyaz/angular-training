@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { CustomPipe } from './pipes/custom.pipe';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -61,7 +61,7 @@ import { NgForm } from '@angular/forms';
 
 <!-- Template Driven Forms -->
 
-<form #frm="ngForm" (ngSubmit)="onSubmit(frm.value)">
+<!-- <form #frm="ngForm" (ngSubmit)="onSubmit(frm.value)">
   <input type="text" name="name" placeholder="Name" ngModel> <br>
   <input type="text" name="surname" placeholder="Surname" ngModel> <br>
   <input type="email" name="email" placeholder="Email" ngModel> <br>
@@ -73,7 +73,23 @@ import { NgForm } from '@angular/forms';
     <input type="text" name="address" placeholder="Address" ngModel>
   </div>
   <button>Send</button>
+</form> -->
+
+<!-- Model Driven Forms -->
+<form [formGroup]="frm" (ngSubmit)="onSubmit()">
+  <input type="text" placeholder="Name" formControlName="name"><br>
+  <input type="text" placeholder="Surname" formControlName="surname"><br>
+  <input type="email" placeholder="Email" formControlName="email"><br>
+  <input type="tel" placeholder="Tel" formControlName="tel"><br>
+  <div formGroupName="address">
+    <input type="text" placeholder="Country" formControlName="country"><br>
+    <input type="text" placeholder="City" formControlName="city"><br>
+    <input type="text" placeholder="Address" formControlName="address"><br>
+  </div>
+  <button>Send</button>
 </form>
+<button (click)="ok()">Ok</button>
+Valid : {{frm.valid}}
   `,
   styleUrls: ['./app.component.scss']
 })
@@ -120,9 +136,9 @@ export class AppComponent {
 
   // Template Driven Forms
 
-  @ViewChild("frm", {static:true}) frm:NgForm;
+  // @ViewChild("frm", {static:true}) frm:NgForm;
 
-  onSubmit(data){
+  // onSubmit(data){
     // console.log('Value ' + this.frm.value);
     // console.log('Valid ' + this.frm.valid);
     // console.log('Touched ' + this.frm.touched);
@@ -130,8 +146,49 @@ export class AppComponent {
     
     // console.log(data);
 
-    console.log(this.frm);
-    console.log(this.frm.controls);
-    console.log(this.frm.form);
+  //   console.log(this.frm);
+  //   console.log(this.frm.controls);
+  //   console.log(this.frm.form);
+  // }
+
+  // Model Driven
+
+  frm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder){
+    this.frm = formBuilder.group({
+      name: ["", Validators.required],
+      surname: [""],
+      email: [""],
+      tel: [""],
+      address: formBuilder.group({
+        country: [""],
+        city: [""],
+        address: [""]
+      })
+    });
+
+    // formda herhangi bir şey değişirse çalışır.
+    this.frm.valueChanges.subscribe({
+      next: data => {
+        console.log(data);
+      }
+    });
+
+    // name değişirse çalışır.
+    this.frm.get("name").valueChanges.subscribe({
+      next: data => {
+        console.log(data);
+      }
+    });
+  }
+
+  onSubmit(){
+    console.log(this.frm.value);
+  }
+
+  ok() {
+    // this.frm.controls["name"] böyle de erişilebilir.
+    this.frm.get("name").setValue("Gençay", {onlySelf: true});
   }
 }
