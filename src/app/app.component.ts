@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CustomPipe } from './pipes/custom.pipe';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -56,19 +57,35 @@ import { CustomPipe } from './pipes/custom.pipe';
   <li *appCustomfor="names; let name; let index = index">{{name}} - {{index}}</li>
 </ul> -->
 
-<app-example data="merhaba">Test</app-example>
+<!-- <app-example data="merhaba">Test</app-example> -->
+
+<!-- Template Driven Forms -->
+
+<form #frm="ngForm" (ngSubmit)="onSubmit(frm.value)">
+  <input type="text" name="name" placeholder="Name" ngModel> <br>
+  <input type="text" name="surname" placeholder="Surname" ngModel> <br>
+  <input type="email" name="email" placeholder="Email" ngModel> <br>
+  <input type="tel" name="tel" placeholder="Tel"> <br>
+
+  <div ngModelGroup="address">
+    <input type="text" name="country" placeholder="Country" ngModel> <br>
+    <input type="text" name="city" placeholder="City" ngModel> <br>
+    <input type="text" name="address" placeholder="Address" ngModel>
+  </div>
+  <button>Send</button>
+</form>
   `,
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private custom: CustomPipe){
-    console.log(custom.transform("sddsksddksds", 3, 6));
-  }
-  names: string[] = ["Ahmet", "Yiğit", "Can", "Deniz", "Hilmi", "Hüseyin"]
-  
+  // constructor(private custom: CustomPipe){
+  //   console.log(custom.transform("sddsksddksds", 3, 6));
+  // }
+  // names: string[] = ["Ahmet", "Yiğit", "Can", "Deniz", "Hilmi", "Hüseyin"]
+
   // pipe
-  name = 'ahmet';
-  
+  // name = 'ahmet';
+
   // title = 'proj2';
   // name: string;
 
@@ -100,4 +117,21 @@ export class AppComponent {
   // }
 
   // Component Life Cycle Hook
+
+  // Template Driven Forms
+
+  @ViewChild("frm", {static:true}) frm:NgForm;
+
+  onSubmit(data){
+    // console.log('Value ' + this.frm.value);
+    // console.log('Valid ' + this.frm.valid);
+    // console.log('Touched ' + this.frm.touched);
+    // console.log('Submitted ' + this.frm.submitted);
+    
+    // console.log(data);
+
+    console.log(this.frm);
+    console.log(this.frm.controls);
+    console.log(this.frm.form);
+  }
 }
