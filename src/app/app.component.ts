@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { CustomPipe } from './pipes/custom.pipe';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { capitalLetterValidator } from './validators/func';
 
 @Component({
   selector: 'app-root',
@@ -78,8 +79,17 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 <!-- Model Driven Forms -->
 <form [formGroup]="frm" (ngSubmit)="onSubmit()">
   <input type="text" placeholder="Name" formControlName="name"><br>
+  <div *ngIf="!name.valid && (name.dirty || name.touched)">
+    {{name.errors | json}}
+  </div>
   <input type="text" placeholder="Surname" formControlName="surname"><br>
+  <div *ngIf="!surname.valid && (surname.dirty || surname.touched)">
+    {{surname.errors | json}}
+  </div>
   <input type="email" placeholder="Email" formControlName="email"><br>
+  <div *ngIf="!email.valid && (email.dirty || email.touched)">
+    {{email.errors | json}}
+  </div>
   <input type="tel" placeholder="Tel" formControlName="tel"><br>
   <div formGroupName="address">
     <input type="text" placeholder="Country" formControlName="country"><br>
@@ -197,16 +207,16 @@ export class AppComponent {
 
   constructor(private formBuilder: FormBuilder) {
     this.frm = formBuilder.group({
-      name: ["", Validators.required],
-      surname: [""],
-      email: [""],
+      name: ["", [Validators.required, Validators.minLength(3), capitalLetterValidator(3)]],
+      surname: ["", Validators.required],
+      email: ["", [Validators.required, Validators.email]],
       tel: [""],
       address: formBuilder.group({
         country: [""],
         city: [""],
         address: [""]
       })
-    });
+    }, {validators : []});
 
     // formda herhangi bir şey değişirse çalışır.
     this.frm.valueChanges.subscribe({
@@ -223,7 +233,20 @@ export class AppComponent {
     });
   }
 
+  get name() {
+    return this.frm.get("name");
+  }
+
+  get surname() {
+    return this.frm.get("surname");
+  }
+
+  get email() {
+    return this.frm.get("email");
+  }
+
   onSubmit() {
+    console.log(this.frm.valid);
     console.log(this.frm.value);
   }
 
