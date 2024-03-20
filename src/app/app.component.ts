@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { CustomPipe } from './pipes/custom.pipe';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { capitalLetterValidator } from './validators/func';
+import { ProductService } from './productservice';
 
 @Component({
   selector: 'app-root',
@@ -205,7 +206,8 @@ export class AppComponent {
 
   frm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private productService: ProductService, private formBuilder: FormBuilder) {
+    console.log(productService.getProducts());
     this.frm = formBuilder.group({
       name: ["", [Validators.required, Validators.minLength(3), capitalLetterValidator(3)]],
       surname: ["", Validators.required],
