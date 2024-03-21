@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 import { CustomPipe } from './pipes/custom.pipe';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { capitalLetterValidator } from './validators/func';
@@ -206,7 +206,7 @@ export class AppComponent {
 
   frm: FormGroup;
 
-  constructor(private productService: ProductService, private formBuilder: FormBuilder) {
+  constructor(@Inject(ProductService) private productService: ProductService, private formBuilder: FormBuilder) {
     console.log(productService.getProducts());
     this.frm = formBuilder.group({
       name: ["", [Validators.required, Validators.minLength(3), capitalLetterValidator(3)]],
