@@ -19,6 +19,9 @@ import { Childa2Component } from './components/child_to_child_communication/chil
 import { Childb2Component } from './components/child_to_child_communication/childb2/childb2.component';
 import { ExampleComponent } from './components/example/example.component';
 import { LoggerService, ProductService } from './productservice';
+import { productServiceIT } from './injection-token';
+import {HttpClient, HttpClientModule} from '@angular/common/http'
+import { firstValueFrom } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -42,9 +45,29 @@ import { LoggerService, ProductService } from './productservice';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [{provide: DEFAULT_CURRENCY_CODE, useValue: '₺'}, CustomPipe, ProductService, LoggerService],
+  providers: [
+  // {provide: DEFAULT_CURRENCY_CODE, useValue: '₺'},
+  //  CustomPipe, 
+  //  ProductService, // DI Token - Default Type Token 
+  //  LoggerService],
+  // {provide: ProductService, useClass: ProductService}, // Type Token
+  // {provide: "productService", useClass: ProductService}, // String Token
+  LoggerService,
+  // {provide: productServiceIT, useClass: ProductService},
+  // {provide: "example", useValue: "merhaba"}
+  // {provide: "example", useValue: () => {
+  //   return "Merhaba";
+  // }}
+  {provide: "productService", useFactory: (httpClient: HttpClient) => {
+  const obs = httpClient.get("https://jsonplaceholder.typicode.com/posts")
+  .subscribe({next: data => console.log(data)});
+  return new ProductService();
+  }, 
+  deps: [HttpClient]},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

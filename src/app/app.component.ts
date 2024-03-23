@@ -3,6 +3,7 @@ import { CustomPipe } from './pipes/custom.pipe';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { capitalLetterValidator } from './validators/func';
 import { ProductService } from './productservice';
+import { productServiceIT } from './injection-token';
 
 @Component({
   selector: 'app-root',
@@ -205,8 +206,9 @@ export class AppComponent {
   // Model Driven
 
   frm: FormGroup;
-
-  constructor(@Inject(ProductService) private productService: ProductService, private formBuilder: FormBuilder) {
+//  @Inject("example") func: any
+  constructor(@Inject("productService")private productService: ProductService, private formBuilder: FormBuilder) {
+    // console.log(func());
     console.log(productService.getProducts());
     this.frm = formBuilder.group({
       name: ["", [Validators.required, Validators.minLength(3), capitalLetterValidator(3)]],
