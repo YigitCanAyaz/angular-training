@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { capitalLetterValidator } from './validators/func';
 import { ProductService } from './productservice';
 import { productServiceIT } from './injection-token';
+import { RandomService } from './random.service';
 
 @Component({
   selector: 'app-root',
@@ -142,7 +143,12 @@ form touched : {{frm.touched}} <br>
 <button (click)="disable()">disable</button><br>
 
 
-  `,
+AppComponent => {{randomService.random}}
+<br>
+<app-a><app-a>
+  `
+  
+  ,
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
@@ -207,7 +213,7 @@ export class AppComponent {
 
   frm: FormGroup;
 //  @Inject("example") func: any
-  constructor(@Inject("productService")private productService: ProductService, private formBuilder: FormBuilder) {
+  constructor(@Inject("productService")private productService: ProductService, private formBuilder: FormBuilder, public randomService: RandomService) {
     // console.log(func());
     console.log(productService.getProducts());
     this.frm = formBuilder.group({

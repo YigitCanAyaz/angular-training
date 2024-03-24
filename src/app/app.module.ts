@@ -22,6 +22,8 @@ import { LoggerService, ProductService } from './productservice';
 import { productServiceIT } from './injection-token';
 import {HttpClient, HttpClientModule} from '@angular/common/http'
 import { firstValueFrom } from 'rxjs';
+import { AComponent } from './components/a/a.component';
+import { BComponent } from './components/b/b.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { firstValueFrom } from 'rxjs';
     Parent3Component,
     Childa2Component,
     Childb2Component,
-    ExampleComponent
+    ExampleComponent,
+    AComponent,
+    BComponent
   ],
   imports: [
     BrowserModule,
