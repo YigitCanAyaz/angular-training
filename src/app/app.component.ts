@@ -145,7 +145,14 @@ form touched : {{frm.touched}} <br>
 
 AppComponent => {{randomService.random}}
 <br>
-<app-a><app-a>
+<!-- <app-a><app-a> -->
+
+<br>
+<br>
+<br>
+<app-create-user></app-create-user>
+<br>
+<app-read-user></app-read-user>
   `
   
   ,

@@ -24,6 +24,8 @@ import {HttpClient, HttpClientModule} from '@angular/common/http'
 import { firstValueFrom } from 'rxjs';
 import { AComponent } from './components/a/a.component';
 import { BComponent } from './components/b/b.component';
+import { CreateUserComponent } from './components/create-user/create-user.component';
+import { ReadUserComponent } from './components/read-user/read-user.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { BComponent } from './components/b/b.component';
     Childb2Component,
     ExampleComponent,
     AComponent,
-    BComponent
+    BComponent,
+    CreateUserComponent,
+    ReadUserComponent
   ],
   imports: [
     BrowserModule,
