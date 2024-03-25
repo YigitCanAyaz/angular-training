@@ -26,6 +26,12 @@ import { AComponent } from './components/a/a.component';
 import { BComponent } from './components/b/b.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
 import { ReadUserComponent } from './components/read-user/read-user.component';
+import { AboutComponent } from './components/about/about.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { RouterModule } from '@angular/router';
+import { routes } from './routes/routes';
+import { ErrorComponent } from './components/error/error.component';
+
 
 @NgModule({
   declarations: [
@@ -47,14 +53,18 @@ import { ReadUserComponent } from './components/read-user/read-user.component';
     AComponent,
     BComponent,
     CreateUserComponent,
-    ReadUserComponent
+    ReadUserComponent,
+    AboutComponent,
+    ContactComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    // RouterModule.forRoot(routes)
   ],
   providers: [
   // {provide: DEFAULT_CURRENCY_CODE, useValue: '₺'},

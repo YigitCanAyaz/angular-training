@@ -147,16 +147,27 @@ AppComponent => {{randomService.random}}
 <br>
 <!-- <app-a><app-a> -->
 
+<!-- Services --> 
 <br>
 <br>
 <br>
 <app-create-user></app-create-user>
 <br>
 <app-read-user></app-read-user>
+
+
+<!-- Routing -->
+<a routerLink="home" routerLinkActive="active">Home</a> 
+| <a routerLink="about" routerLinkActive="active">About</a> 
+| <a [routerLink]="['contact', 'a', 'b', 'c']" routerLinkActive="active">Contact</a>
+<hr>
+<router-outlet></router-outlet>
+  
   `
   
   ,
-  styleUrls: ['./app.component.scss']
+  // styleUrls: ['./app.component.scss']
+  styles: [".active{color:green;}"]
 })
 export class AppComponent {
   // constructor(private custom: CustomPipe){
