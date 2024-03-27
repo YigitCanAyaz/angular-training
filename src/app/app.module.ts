@@ -32,6 +32,10 @@ import { RouterModule } from '@angular/router';
 import { routes } from './routes/routes';
 import { ErrorComponent } from './components/error/error.component';
 import { APP_BASE_HREF } from '@angular/common';
+import { ProductComponent } from './components/product/product.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { ProductSpecComponent } from './components/product-spec/product-spec.component';
+import { ProductOverviewComponent } from './components/product-overview/product-overview.component';
 
 
 @NgModule({
@@ -57,7 +61,11 @@ import { APP_BASE_HREF } from '@angular/common';
     ReadUserComponent,
     AboutComponent,
     ContactComponent,
-    ErrorComponent
+    ErrorComponent,
+    ProductComponent,
+    ProductDetailComponent,
+    ProductSpecComponent,
+    ProductOverviewComponent
   ],
   imports: [
     BrowserModule,

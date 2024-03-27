@@ -157,12 +157,16 @@ AppComponent => {{randomService.random}}
 
 
 <!-- Routing -->
-<a routerLink="home" routerLinkActive="active">Home</a> 
+<!-- <a routerLink="home" routerLinkActive="active">Home</a> 
 | <a routerLink="about" routerLinkActive="active">About</a> 
 | <a [routerLink]="['contact', 'a', 'b', 'c']" routerLinkActive="active">Contact</a>
 <hr>
 <router-outlet></router-outlet>
-  <button (click)="go()">Go</button>
+  <button (click)="go()">Go</button> -->
+
+<!-- Routing - IV - Child Routes -->
+  <a routerLink="products">Products</a><br>
+  <router-outlet></router-outlet>
   `
   
   ,
