@@ -38,6 +38,9 @@ import { ProductSpecComponent } from './components/product-spec/product-spec.com
 import { ProductOverviewComponent } from './components/product-overview/product-overview.component';
 import { A1Component } from './components/a1/a1.component';
 import { B1Component } from './components/b1/b1.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { UserComponent } from './components/user/user.component';
 
 
 @NgModule({
@@ -69,7 +72,10 @@ import { B1Component } from './components/b1/b1.component';
     ProductSpecComponent,
     ProductOverviewComponent,
     A1Component,
-    B1Component
+    B1Component,
+    DashboardComponent,
+    AdminComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

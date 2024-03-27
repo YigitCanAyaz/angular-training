@@ -157,23 +157,24 @@ AppComponent => {{randomService.random}}
 
 
 <!-- Routing -->
-<!-- <a routerLink="home" routerLinkActive="active">Home</a> 
+<a routerLink="home" routerLinkActive="active">Home</a> 
 | <a routerLink="about" routerLinkActive="active">About</a> 
+| <a routerLink="dashboard" routerLinkActive="active">Dashboard</a> 
 | <a [routerLink]="['contact', 'a', 'b', 'c']" routerLinkActive="active">Contact</a>
 <hr>
-<router-outlet></router-outlet>
-  <button (click)="go()">Go</button> -->
+<!-- <router-outlet></router-outlet> -->
+  <button (click)="go()">Go</button>
 
 <!-- Routing - IV - Child Routes -->
-  <!-- <a routerLink="products">Products</a><br>
-  <router-outlet></router-outlet> -->
+  <a routerLink="products">Products</a><br>
+  <router-outlet></router-outlet>
 
 
 <!-- Routing - V - Query String -->
 
-  <a routerLink="a" [queryParams]="{x : 3}">a</a> & <a routerLink="b" 
+  <!-- <a routerLink="a" [queryParams]="{x : 3}">a</a> & <a routerLink="b" 
   [queryParams]="bQueryString" queryParamsHandling="merge">b</a><br>
-  <router-outlet></router-outlet>
+  <router-outlet></router-outlet> -->
   `
   
   ,

@@ -12,14 +12,24 @@ import { AComponent } from './components/a/a.component';
 import { BComponent } from './components/b/b.component';
 import { A1Component } from './components/a1/a1.component';
 import { B1Component } from './components/b1/b1.component';
+import { canActivateChildGuard, canActivateGuard, canDeactivateGuard, isAdminGuard, isUserGuard, resolveGuard } from './guards/guards';
+import { AdminComponent } from './components/admin/admin.component';
+import { UserComponent } from './components/user/user.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "/home", pathMatch: "full"},
   {path: "home", component: HomeComponent},
   {path: "home/:ahmet", component: HomeComponent},
   {path: "about", component: AboutComponent},
+  {path: "dashboard", component: AdminComponent, canMatch: [isAdminGuard]},
+  {path: "dashboard", component: UserComponent, canMatch: [isUserGuard]},
   {path: "contact/a/b/c", component: ContactComponent},
-  {path: "products", component: ProductComponent, children: [
+  {path: "products", component: ProductComponent, 
+  canActivate: [canActivateGuard],
+  canActivateChild: [canActivateChildGuard],
+  canDeactivate: [canDeactivateGuard],
+  resolve: {photos : resolveGuard},
+  children: [
     { path: "detail/:id", component: ProductDetailComponent, children: [
       {path: "", redirectTo: "overview", pathMatch: "full"},
       {path: "overview", component: ProductOverviewComponent},
