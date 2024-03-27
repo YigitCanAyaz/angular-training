@@ -165,7 +165,14 @@ AppComponent => {{randomService.random}}
   <button (click)="go()">Go</button> -->
 
 <!-- Routing - IV - Child Routes -->
-  <a routerLink="products">Products</a><br>
+  <!-- <a routerLink="products">Products</a><br>
+  <router-outlet></router-outlet> -->
+
+
+<!-- Routing - V - Query String -->
+
+  <a routerLink="a" [queryParams]="{x : 3}">a</a> & <a routerLink="b" 
+  [queryParams]="bQueryString" queryParamsHandling="merge">b</a><br>
   <router-outlet></router-outlet>
   `
   
@@ -325,5 +332,9 @@ export class AppComponent implements OnInit{
 
   enable() {
     this.frm.get("name").enable();
+  }
+
+  bQueryString : any = {
+    title: "merhaba"
   }
 }

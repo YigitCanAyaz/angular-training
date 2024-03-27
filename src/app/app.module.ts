@@ -36,6 +36,8 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { ProductSpecComponent } from './components/product-spec/product-spec.component';
 import { ProductOverviewComponent } from './components/product-overview/product-overview.component';
+import { A1Component } from './components/a1/a1.component';
+import { B1Component } from './components/b1/b1.component';
 
 
 @NgModule({
@@ -65,7 +67,9 @@ import { ProductOverviewComponent } from './components/product-overview/product-
     ProductComponent,
     ProductDetailComponent,
     ProductSpecComponent,
-    ProductOverviewComponent
+    ProductOverviewComponent,
+    A1Component,
+    B1Component
   ],
   imports: [
     BrowserModule,

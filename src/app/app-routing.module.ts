@@ -8,6 +8,10 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { ProductOverviewComponent } from './components/product-overview/product-overview.component';
 import { ProductSpecComponent } from './components/product-spec/product-spec.component';
+import { AComponent } from './components/a/a.component';
+import { BComponent } from './components/b/b.component';
+import { A1Component } from './components/a1/a1.component';
+import { B1Component } from './components/b1/b1.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "/home", pathMatch: "full"},
@@ -22,6 +26,8 @@ const routes: Routes = [
       {path: "spec", component: ProductSpecComponent},
     ]}
   ]},
+  {path: "a", component: A1Component},
+  {path: "b", component: B1Component},
   {path: "**", component: ErrorComponent},
 
 
