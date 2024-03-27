@@ -31,6 +31,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './routes/routes';
 import { ErrorComponent } from './components/error/error.component';
+import { APP_BASE_HREF } from '@angular/common';
 
 
 @NgModule({
@@ -79,6 +80,7 @@ import { ErrorComponent } from './components/error/error.component';
   // {provide: "example", useValue: () => {
   //   return "Merhaba";
   // }}
+  {provide: APP_BASE_HREF, useValue: "ahmet"},
   {provide: "productService", useFactory: (httpClient: HttpClient) => {
   const obs = httpClient.get("https://jsonplaceholder.typicode.com/posts")
   .subscribe({next: data => console.log(data)});

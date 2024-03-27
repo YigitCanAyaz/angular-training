@@ -1,4 +1,4 @@
-import { Component, Inject, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { CustomPipe } from './pipes/custom.pipe';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { capitalLetterValidator } from './validators/func';
@@ -162,14 +162,14 @@ AppComponent => {{randomService.random}}
 | <a [routerLink]="['contact', 'a', 'b', 'c']" routerLinkActive="active">Contact</a>
 <hr>
 <router-outlet></router-outlet>
-  
+  <button (click)="go()">Go</button>
   `
   
   ,
   // styleUrls: ['./app.component.scss']
   styles: [".active{color:green;}"]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   // constructor(private custom: CustomPipe){
   //   console.log(custom.transform("sddsksddksds", 3, 6));
   // }
@@ -259,6 +259,13 @@ export class AppComponent {
         console.log(data);
       }
     });
+
+  }
+  ngOnInit(): void {
+  }
+
+  go() {
+    history.pushState({message: "merhaba"}, "title", "a/b");
   }
 
   get name() {
