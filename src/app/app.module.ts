@@ -80,7 +80,7 @@ import { APP_BASE_HREF } from '@angular/common';
   // {provide: "example", useValue: () => {
   //   return "Merhaba";
   // }}
-  {provide: APP_BASE_HREF, useValue: "ahmet"},
+  // {provide: APP_BASE_HREF, useValue: "ahmet"},
   {provide: "productService", useFactory: (httpClient: HttpClient) => {
   const obs = httpClient.get("https://jsonplaceholder.typicode.com/posts")
   .subscribe({next: data => console.log(data)});
