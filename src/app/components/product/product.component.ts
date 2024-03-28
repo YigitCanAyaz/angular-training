@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -27,9 +27,14 @@ export class ProductComponent implements OnInit{
 
   // Functional Router Guard
 
-  constructor(private activatedRoute : ActivatedRoute) {}
+  constructor(private activatedRoute : ActivatedRoute, private router: Router) {
+    console.log(router.getCurrentNavigation()?.extras.state);
+  }
   photos;
   ngOnInit(): void {
+    console.log(this.activatedRoute.data.subscribe(data => {
+      console.log(data);
+    }))
     this.activatedRoute.data.subscribe((data: any) => this.photos = data["photos"]);
   }
 }

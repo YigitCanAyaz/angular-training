@@ -166,7 +166,7 @@ AppComponent => {{randomService.random}}
   <button (click)="go()">Go</button>
 
 <!-- Routing - IV - Child Routes -->
-  <a routerLink="products">Products</a><br>
+  <a routerLink="products" [state]="{key3: 'value3', key4: 'value4'}">Products</a><br>
   <router-outlet></router-outlet>
 
 

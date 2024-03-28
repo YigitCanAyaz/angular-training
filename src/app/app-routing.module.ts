@@ -25,6 +25,7 @@ const routes: Routes = [
   {path: "dashboard", component: UserComponent, canMatch: [isUserGuard]},
   {path: "contact/a/b/c", component: ContactComponent},
   {path: "products", component: ProductComponent, 
+  data: {key1: 'value1', key2: 'value2'},
   canActivate: [canActivateGuard],
   canActivateChild: [canActivateChildGuard],
   canDeactivate: [canDeactivateGuard],
