@@ -41,6 +41,7 @@ import { B1Component } from './components/b1/b1.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { UserComponent } from './components/user/user.component';
+import { CustomModule } from './custom/custom.module';
 
 
 @NgModule({
@@ -75,7 +76,14 @@ import { UserComponent } from './components/user/user.component';
     B1Component,
     DashboardComponent,
     AdminComponent,
-    UserComponent
+    UserComponent,
+    // AddProductComponent,
+    // DetailProductComponent,
+    // ListProductComponent,
+    // AddCustomerComponent,
+    // DetailCustomerComponent,
+    // ListCustomerComponent,
+    // WelcomeComponent
   ],
   imports: [
     BrowserModule,
@@ -83,6 +91,7 @@ import { UserComponent } from './components/user/user.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    CustomModule,
     // RouterModule.forRoot(routes)
   ],
   providers: [

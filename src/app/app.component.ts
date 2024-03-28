@@ -175,6 +175,15 @@ AppComponent => {{randomService.random}}
   <!-- <a routerLink="a" [queryParams]="{x : 3}">a</a> & <a routerLink="b" 
   [queryParams]="bQueryString" queryParamsHandling="merge">b</a><br>
   <router-outlet></router-outlet> -->
+
+  <!-- Module  -->
+
+  <!-- <app-custom></app-custom> -->
+
+  <a routerLink="">Home</a> | <a routerLink="products">Products</a>
+  | <a routerLink="customers">Customers</a> <br>
+
+  <router-outlet></router-outlet>
   `
   
   ,
