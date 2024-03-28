@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router, RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -32,6 +32,13 @@ export class ProductComponent implements OnInit{
   }
   photos;
   ngOnInit(): void {
+
+    // router event
+    this.router.events.subscribe((event: RouterEvent) => {
+      if (event instanceof NavigationStart) {
+        console.log("NavigationStart", event);
+      }
+    });
     console.log(this.activatedRoute.data.subscribe(data => {
       console.log(data);
     }))
