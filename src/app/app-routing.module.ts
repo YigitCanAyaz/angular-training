@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
@@ -22,6 +22,7 @@ import { DetailProductComponent } from './components/products/detail-product/det
 import { AddCustomerComponent } from './components/customers/add-customer/add-customer.component';
 import { DetailCustomerComponent } from './components/customers/detail-customer/detail-customer.component';
 import { ListCustomerComponent } from './components/customers/list-customer/list-customer.component';
+import { CustomStrategy } from './strategies/custom.strategy';
 
 const routes: Routes = [
   // {path: "", redirectTo: "/home", pathMatch: "full"},
@@ -49,15 +50,19 @@ const routes: Routes = [
   // {path: "**", component: ErrorComponent},
 
   {path: "", component: WelcomeComponent},
+
   {path: "customers", loadChildren : () => 
-  import("../app/components/customers/customers.module").then(m => m.CustomersModule)},
+  import("../app/components/customers/customers.module")
+  .then(m => m.CustomersModule), data: {preload: true}},
+
   {path: "products", loadChildren : () => 
-  import("../app/components/products/products.module").then(m => m.ProductsModule)}
+  import("../app/components/products/products.module")
+  .then(m => m.ProductsModule), data: {preload: false}}
 ];
 
 @NgModule({
   // imports: [RouterModule.forRoot(routes, {useHash: true})],
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {preloadingStrategy: CustomStrategy})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

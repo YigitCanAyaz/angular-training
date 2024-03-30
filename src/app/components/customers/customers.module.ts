@@ -18,7 +18,7 @@ import { RouterModule } from '@angular/router';
     RouterModule.forChild([
       {path: "customers/add", component: AddCustomerComponent},
       {path: "customers/:id", component: DetailCustomerComponent},
-      {path: "customers", component: ListCustomerComponent},
+      {path: "", component: ListCustomerComponent},
     ])
   ]
 })

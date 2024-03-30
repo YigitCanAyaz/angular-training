@@ -42,6 +42,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { UserComponent } from './components/user/user.component';
 import { CustomModule } from './custom/custom.module';
+import { CustomStrategy } from './strategies/custom.strategy';
 
 
 @NgModule({
@@ -95,6 +96,7 @@ import { CustomModule } from './custom/custom.module';
     // RouterModule.forRoot(routes)
   ],
   providers: [
+    CustomStrategy,
   // {provide: DEFAULT_CURRENCY_CODE, useValue: '₺'},
   //  CustomPipe, 
   //  ProductService, // DI Token - Default Type Token 
