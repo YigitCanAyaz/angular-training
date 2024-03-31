@@ -43,6 +43,8 @@ import { AdminComponent } from './components/admin/admin.component';
 import { UserComponent } from './components/user/user.component';
 import { CustomModule } from './custom/custom.module';
 import { CustomStrategy } from './strategies/custom.strategy';
+import { StandaloneComponent } from './components/standalone/standalone.component';
+import { Standalone2Component } from './components/standalone2/standalone2.component';
 
 
 @NgModule({
@@ -78,6 +80,7 @@ import { CustomStrategy } from './strategies/custom.strategy';
     DashboardComponent,
     AdminComponent,
     UserComponent,
+    // StandaloneComponent,
     // AddProductComponent,
     // DetailProductComponent,
     // ListProductComponent,
@@ -93,6 +96,8 @@ import { CustomStrategy } from './strategies/custom.strategy';
     ReactiveFormsModule,
     HttpClientModule,
     CustomModule,
+    StandaloneComponent,
+    Standalone2Component
     // RouterModule.forRoot(routes)
   ],
   providers: [

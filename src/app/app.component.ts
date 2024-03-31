@@ -182,13 +182,25 @@ AppComponent => {{randomService.random}}
 
   <a routerLink="">Home</a> | <a routerLink="products">Products</a>
   | <a routerLink="customers">Customers</a> <br>
+  <br>
+
+  <a routerLink="standalone">Standalone</a> | 
+  <a routerLink="standalone2">Standalone 2</a>
+  <br>
 
   <router-outlet></router-outlet>
+
+  <!-- Standalone Component & Directive & Pipe -->
+
+  <!-- <app-standalone></app-standalone>
+  <app-standalone2></app-standalone2> -->
+
+
   `
   
   ,
   // styleUrls: ['./app.component.scss']
-  styles: [".active{color:green;}"]
+  styles: [".active{color:green;}"],
 })
 export class AppComponent implements OnInit{
   // constructor(private custom: CustomPipe){

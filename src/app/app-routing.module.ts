@@ -57,7 +57,15 @@ const routes: Routes = [
 
   {path: "products", loadChildren : () => 
   import("../app/components/products/products.module")
-  .then(m => m.ProductsModule), data: {preload: false}}
+  .then(m => m.ProductsModule), data: {preload: false}},
+
+  {path: "standalone", loadComponent : () => 
+  import("../app/components/standalone/standalone.component")
+  .then(s => s.StandaloneComponent)}, 
+
+  {path: "standalone2", loadComponent : () => 
+  import("../app/components/standalone2/standalone2.component")
+  .then(s => s.Standalone2Component)},
 ];
 
 @NgModule({
