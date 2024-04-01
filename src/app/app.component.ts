@@ -80,7 +80,7 @@ import { RandomService } from './random.service';
 </form> -->
 
 <!-- Model Driven Forms -->
-<form [formGroup]="frm" (ngSubmit)="onSubmit()">
+<!-- <form [formGroup]="frm" (ngSubmit)="onSubmit()">
   <input type="text" placeholder="Name" formControlName="name"><br>
   <div *ngIf="!name.valid && (name.dirty || name.touched)">
     {{name.errors | json}}
@@ -103,11 +103,11 @@ import { RandomService } from './random.service';
 </form>
 <button (click)="ok()">Ok</button>
 Valid : {{frm.valid}}
-<br>
+<br> -->
 
 <!-- State Change -->
 
-<button (click)="markAsTouched()">markAsTouched</button><br>
+<!-- <button (click)="markAsTouched()">markAsTouched</button><br>
 
 form touched : {{frm.touched}} <br>
 'name' form control touched : {{frm.get("name").touched}} <br>
@@ -143,7 +143,7 @@ form touched : {{frm.touched}} <br>
 <button (click)="disable()">disable</button><br>
 
 
-AppComponent => {{randomService.random}}
+AppComponent => {{randomService.random}} -->
 <br>
 <!-- <app-a><app-a> -->
 
@@ -157,11 +157,11 @@ AppComponent => {{randomService.random}}
 
 
 <!-- Routing -->
-<a routerLink="home" routerLinkActive="active">Home</a> 
+<!-- <a routerLink="home" routerLinkActive="active">Home</a> 
 | <a routerLink="about" routerLinkActive="active">About</a> 
 | <a routerLink="dashboard" routerLinkActive="active">Dashboard</a> 
 | <a [routerLink]="['contact', 'a', 'b', 'c']" routerLinkActive="active">Contact</a>
-<hr>
+<hr> -->
 <!-- <router-outlet></router-outlet> -->
   <button (click)="go()">Go</button>
 
@@ -180,7 +180,7 @@ AppComponent => {{randomService.random}}
 
   <!-- <app-custom></app-custom> -->
 
-  <a routerLink="">Home</a> | <a routerLink="products">Products</a>
+  <!-- <a routerLink="">Home</a> | <a routerLink="products">Products</a>
   | <a routerLink="customers">Customers</a> <br>
   <br>
 
@@ -188,7 +188,7 @@ AppComponent => {{randomService.random}}
   <a routerLink="standalone2">Standalone 2</a>
   <br>
 
-  <router-outlet></router-outlet>
+  <router-outlet></router-outlet> -->
 
   <!-- Standalone Component & Directive & Pipe -->
 
@@ -196,6 +196,25 @@ AppComponent => {{randomService.random}}
   <app-standalone2></app-standalone2> -->
 
 
+  <h3>App Component</h3>
+  <!-- <app-home> -->
+    <!-- Burası ng content içeriğidir -->
+    <!-- <header>Burası header içeriğidir...</header>
+    <body>
+      burası body içeriğidir...
+    </body>
+    <footer>
+      Burası footer içeriğidir...
+    </footer>
+  </app-home> -->
+  
+  <app-home>
+    <div class="solMenu">Sol menü içeriği</div>
+    <div class="ortaMenu">Orta menü içeriği</div>
+    <div class="sagMenu">Sağ menü içeriği</div>
+
+    asdasdasd
+  </app-home>
   `
   
   ,

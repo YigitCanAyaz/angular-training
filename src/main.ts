@@ -11,34 +11,34 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { importProvidersFrom, inject } from '@angular/core';
 
 
-// platformBrowserDynamic().bootstrapModule(AppModule)
-//   .catch(err => console.error(err));
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));
 
 
-bootstrapApplication(StandaloneComponent, {
-    providers: [
-        {provide: "url", useValue: "https://www.google.com"},
-        importProvidersFrom([
-            HttpClientModule
-        ]),
-        provideRouter([
-            {path: "", component: HomeComponent},
-            {path: "about", component: AboutComponent},
+// bootstrapApplication(StandaloneComponent, {
+//     providers: [
+//         {provide: "url", useValue: "https://www.google.com"},
+//         importProvidersFrom([
+//             HttpClientModule
+//         ]),
+//         provideRouter([
+//             {path: "", component: HomeComponent},
+//             {path: "about", component: AboutComponent},
 
-            {path: "product/:id", 
-            component: ProductComponent,
-            data: {
-                productName: "Terlik"
-            },
-        resolve: {
-            products: (route, state) => {
-                const httpClient: HttpClient = inject(HttpClient);
-                return httpClient.get("https://jsonplaceholder.typicode.com/photos");
-            }
-        }},
+//             {path: "product/:id", 
+//             component: ProductComponent,
+//             data: {
+//                 productName: "Terlik"
+//             },
+//         resolve: {
+//             products: (route, state) => {
+//                 const httpClient: HttpClient = inject(HttpClient);
+//                 return httpClient.get("https://jsonplaceholder.typicode.com/photos");
+//             }
+//         }},
 
-    // ], withPreloading(PreloadAllModules), withComponentInputBinding())
+//     // ], withPreloading(PreloadAllModules), withComponentInputBinding())
 
-        ], withPreloading(PreloadAllModules))
-    ]
-});
+//         ], withPreloading(PreloadAllModules))
+//     ]
+// });

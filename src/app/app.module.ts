@@ -101,7 +101,7 @@ import { Standalone2Component } from './components/standalone2/standalone2.compo
     // RouterModule.forRoot(routes)
   ],
   providers: [
-    CustomStrategy,
+    // CustomStrategy,
   // {provide: DEFAULT_CURRENCY_CODE, useValue: '₺'},
   //  CustomPipe, 
   //  ProductService, // DI Token - Default Type Token 
