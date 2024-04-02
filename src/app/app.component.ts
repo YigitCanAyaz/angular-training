@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { CustomPipe } from './pipes/custom.pipe';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { capitalLetterValidator } from './validators/func';
@@ -220,17 +220,25 @@ AppComponent => {{randomService.random}} -->
     Burası container içeriğidir...
   </ng-container> -->
 
-  <ul>
+  <!-- <ul>
     <ng-container *ngFor="let product of products" >
     <li *ngIf="product.available">{{product.productName}}</li>
     </ng-container>
-  </ul>
+  </ul> -->
+
+  <ng-container *ngTemplateOutlet="t">
+    Ng Container içeriği...
+  </ng-container>
+
+  <ng-template #t>
+    Ng Template içeriği...
+  </ng-template>
   `
   ,
   // styleUrls: ['./app.component.scss']
   styles: [".active{color:green;}"],
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit, AfterViewInit{
   // constructor(private custom: CustomPipe){
   //   console.log(custom.transform("sddsksddksds", 3, 6));
   // }
@@ -292,7 +300,7 @@ export class AppComponent implements OnInit{
 
   frm: FormGroup;
 //  @Inject("example") func: any
-  constructor(@Inject("productService")private productService: ProductService, private formBuilder: FormBuilder, public randomService: RandomService) {
+  constructor(@Inject("productService")private productService: ProductService, private formBuilder: FormBuilder, public randomService: RandomService, private viewContainerRef: ViewContainerRef) {
     // console.log(func());
     console.log(productService.getProducts());
     this.frm = formBuilder.group({
@@ -396,4 +404,12 @@ export class AppComponent implements OnInit{
     {productName: "Table", available: false},
     {productName: "Bin", available: true},
   ]
+
+  @ViewChild("t", {static: false, read: TemplateRef}) 
+  ngTemplate : TemplateRef<any>; 
+
+  ngAfterViewInit() {
+    this.viewContainerRef.createEmbeddedView(this.ngTemplate);
+  }
+
 }
