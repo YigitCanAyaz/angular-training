@@ -12,7 +12,7 @@ import { CustomforDirective } from './directives/customfor.directive';
 import { CustomPipe } from './pipes/custom.pipe';
 import { ParentComponent } from './components/parent_to_child_communication/parent/parent.component';
 import { ParentComponent as ParentComponent2 } from './components/child_to_parent_communication/parent/parent.component';
-import { ChildComponent } from './components/parent_to_child_communication/child/child.component';
+// import { ChildComponent } from './components/parent_to_child_communication/child/child.component';
 import { ChildComponent as ChildComponent2 } from './components/child_to_parent_communication/child/child.component';
 import { Parent3Component } from './components/child_to_child_communication/parent3/parent3.component';
 import { Childa2Component } from './components/child_to_child_communication/childa2/childa2.component';
@@ -45,7 +45,7 @@ import { CustomModule } from './custom/custom.module';
 import { CustomStrategy } from './strategies/custom.strategy';
 import { StandaloneComponent } from './components/standalone/standalone.component';
 import { Standalone2Component } from './components/standalone2/standalone2.component';
-
+import {ChildComponent} from './components/ngtemplateoutlet/child/child.component'
 
 @NgModule({
   declarations: [
@@ -58,7 +58,7 @@ import { Standalone2Component } from './components/standalone2/standalone2.compo
     CustomPipe,
     ParentComponent,
     ParentComponent2,
-    ChildComponent,
+    // ChildComponent,
     ChildComponent2,
     Parent3Component,
     Childa2Component,
@@ -97,7 +97,8 @@ import { Standalone2Component } from './components/standalone2/standalone2.compo
     HttpClientModule,
     CustomModule,
     StandaloneComponent,
-    Standalone2Component
+    Standalone2Component,
+    ChildComponent
     // RouterModule.forRoot(routes)
   ],
   providers: [

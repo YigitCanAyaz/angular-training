@@ -5,6 +5,7 @@ import { capitalLetterValidator } from './validators/func';
 import { ProductService } from './productservice';
 import { productServiceIT } from './injection-token';
 import { RandomService } from './random.service';
+import { ChildComponent } from './components/ngtemplateoutlet/child/child.component';
 
 @Component({
   selector: 'app-root',
@@ -226,17 +227,45 @@ AppComponent => {{randomService.random}} -->
     </ng-container>
   </ul> -->
 
-  <ng-container *ngTemplateOutlet="t">
+  <!-- <ng-container *ngTemplateOutlet="t">
     Ng Container içeriği...
   </ng-container>
 
   <ng-template #t>
     Ng Template içeriği...
+  </ng-template> -->
+
+
+  <!-- <ng-container *ngTemplateOutlet="t; context: {data: 123}"> -->
+  <!-- <ng-container [ngTemplateOutlet]="t" [ngTemplateOutletContext]="{x: 123,
+  y: 321, $implicit: 213}">
+    container...
+  </ng-container>
+  <ng-template #t let-x="x" let-y="y" let-z>
+    template... 
+    <br>
+    x: {{x}} y: {{y}} z: {{z}}
+  </ng-template> -->
+
+  <!-- <ng-container *ngTemplateOutlet="t; context: {$implicit: person}">
+
+  </ng-container>
+
+  <ng-template #t let-person>
+    <ul>
+      <li *ngFor="let _person of person">
+      {{_person.personName}}
+    </ul>
+  </ng-template> -->
+
+  <ng-template #t>
+    Parent Ng Template içeriği...
   </ng-template>
+  <app-childdd [childContainer]="t"></app-childdd>
   `
   ,
   // styleUrls: ['./app.component.scss']
-  styles: [".active{color:green;}"],
+  styles: [".active{color:green;}"]
 })
 export class AppComponent implements OnInit, AfterViewInit{
   // constructor(private custom: CustomPipe){
@@ -409,7 +438,15 @@ export class AppComponent implements OnInit, AfterViewInit{
   ngTemplate : TemplateRef<any>; 
 
   ngAfterViewInit() {
-    this.viewContainerRef.createEmbeddedView(this.ngTemplate);
+    // this.viewContainerRef.createEmbeddedView(this.ngTemplate);
   }
+
+  person : any[] = [
+    {personName: 'Yiğit', age: 31},
+    {personName: 'Şuayip', age: 32},
+    {personName: 'Rıfkı', age: 33},
+    {personName: 'Hüseyin', age: 34},
+    {personName: 'Hilmi', age: 35}
+  ]
 
 }

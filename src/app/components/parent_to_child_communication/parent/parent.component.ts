@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-parent',
   template: `
   <p>parent works!</p>
-  <app-child [childData]="data"></app-child>
+  <!-- <app-child [childData]="data"></app-child> -->
   `
 })
 export class ParentComponent {
