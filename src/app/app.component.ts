@@ -208,15 +208,24 @@ AppComponent => {{randomService.random}} -->
     </footer>
   </app-home> -->
   
-  <app-home>
+  <!-- <app-home>
     <div class="solMenu">Sol menü içeriği</div>
     <div class="ortaMenu">Orta menü içeriği</div>
     <div class="sagMenu">Sağ menü içeriği</div>
 
     asdasdasd
-  </app-home>
+  </app-home> -->
+
+  <!-- <ng-container>
+    Burası container içeriğidir...
+  </ng-container> -->
+
+  <ul>
+    <ng-container *ngFor="let product of products" >
+    <li *ngIf="product.available">{{product.productName}}</li>
+    </ng-container>
+  </ul>
   `
-  
   ,
   // styleUrls: ['./app.component.scss']
   styles: [".active{color:green;}"],
@@ -378,4 +387,13 @@ export class AppComponent implements OnInit{
   bQueryString : any = {
     title: "merhaba"
   }
+
+  products: any[] = [
+    {productName: "Pencil", available: true},
+    {productName: "Notebook", available: true},
+    {productName: "Duster", available: false},
+    {productName: "Book", available: true},
+    {productName: "Table", available: false},
+    {productName: "Bin", available: true},
+  ]
 }
