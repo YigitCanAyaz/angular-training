@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Inject, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, QueryList, TemplateRef, ViewChild, ViewChildren, ViewContainerRef } from '@angular/core';
 import { CustomPipe } from './pipes/custom.pipe';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { capitalLetterValidator } from './validators/func';
@@ -6,6 +6,8 @@ import { ProductService } from './productservice';
 import { productServiceIT } from './injection-token';
 import { RandomService } from './random.service';
 import { ChildComponent } from './components/ngtemplateoutlet/child/child.component';
+import { Child1Component } from './components/child1/child1.component';
+import { ExampleDirective } from './directives/example.directive';
 
 @Component({
   selector: 'app-root',
@@ -145,16 +147,16 @@ form touched : {{frm.touched}} <br>
 
 
 AppComponent => {{randomService.random}} -->
-<br>
+<!-- <br> -->
 <!-- <app-a><app-a> -->
 
 <!-- Services --> 
-<br>
+<!-- <br>
 <br>
 <br>
 <app-create-user></app-create-user>
 <br>
-<app-read-user></app-read-user>
+<app-read-user></app-read-user> -->
 
 
 <!-- Routing -->
@@ -164,11 +166,11 @@ AppComponent => {{randomService.random}} -->
 | <a [routerLink]="['contact', 'a', 'b', 'c']" routerLinkActive="active">Contact</a>
 <hr> -->
 <!-- <router-outlet></router-outlet> -->
-  <button (click)="go()">Go</button>
+  <!-- <button (click)="go()">Go</button> -->
 
 <!-- Routing - IV - Child Routes -->
-  <a routerLink="products" [state]="{key3: 'value3', key4: 'value4'}">Products</a><br>
-  <router-outlet></router-outlet>
+  <!-- <a routerLink="products" [state]="{key3: 'value3', key4: 'value4'}">Products</a><br>
+  <router-outlet></router-outlet> -->
 
 
 <!-- Routing - V - Query String -->
@@ -197,7 +199,7 @@ AppComponent => {{randomService.random}} -->
   <app-standalone2></app-standalone2> -->
 
 
-  <h3>App Component</h3>
+  <!-- <h3>App Component</h3> -->
   <!-- <app-home> -->
     <!-- Burası ng content içeriğidir -->
     <!-- <header>Burası header içeriğidir...</header>
@@ -258,16 +260,34 @@ AppComponent => {{randomService.random}} -->
     </ul>
   </ng-template> -->
 
-  <ng-template #t>
+  <!-- <ng-template #t>
     Parent Ng Template içeriği...
-  </ng-template>
-  <app-childdd [childContainer]="t"></app-childdd>
-  `
-  ,
+  </ng-template> -->
+  <!-- <app-childdd [childContainer]="t"></app-childdd> -->
+
+  <!-- <h1 #h appExample>App Component</h1>
+
+  <app-child1></app-child1> -->
+
+  <p #p>A</p>
+  <p #p *ngIf="visible">B</p>
+  <p #p *ngIf="!visible">C</p>
+
+  <button (click)="showHide()">Show/Hide</button>
+  `,
   // styleUrls: ['./app.component.scss']
   styles: [".active{color:green;}"]
 })
 export class AppComponent implements OnInit, AfterViewInit{
+
+  @ViewChildren("p") list: QueryList<ElementRef>;
+
+  visible: boolean = true;
+
+  showHide() {
+    this.visible = !this.visible;
+  }
+
   // constructor(private custom: CustomPipe){
   //   console.log(custom.transform("sddsksddksds", 3, 6));
   // }
@@ -358,8 +378,40 @@ export class AppComponent implements OnInit, AfterViewInit{
       }
     });
 
+    
+
   }
+
+
+  // @ViewChild("h") _h1: ElementRef;
+  // @ViewChild("h", {read: ElementRef}) _h2: ElementRef;
+  // @ViewChild("h", {read: ExampleDirective}) _h3: ElementRef;
+  // @ViewChild(Child1Component, {static: false}) _child1Component: Child1Component;
+  // @ViewChild(Child1Component, {static: true, read: "ex"}) _ex: Child1Component;
+
+  // @ViewChildren("h") _list : QueryList<ElementRef | Child1Component>;
+
   ngOnInit(): void {
+    // console.log(this._child1Component + ' ngOnInit');
+    // console.log(this._ex);
+    // console.log(this._list);
+    
+  }
+
+  ngAfterViewInit() {
+    // this.viewContainerRef.createEmbeddedView(this.ngTemplate);
+
+    // console.log(this._h1);
+    // console.log(this._h2);
+    // console.log(this._h3);
+    // console.log(this._child1Component);
+    // this._child1Component.x()
+
+    // console.log(this._list);
+
+    this.list.changes.subscribe({
+      next: data => console.log(data)
+    })
   }
 
   go() {
@@ -437,9 +489,7 @@ export class AppComponent implements OnInit, AfterViewInit{
   @ViewChild("t", {static: false, read: TemplateRef}) 
   ngTemplate : TemplateRef<any>; 
 
-  ngAfterViewInit() {
-    // this.viewContainerRef.createEmbeddedView(this.ngTemplate);
-  }
+
 
   person : any[] = [
     {personName: 'Yiğit', age: 31},

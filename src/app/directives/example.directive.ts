@@ -8,6 +8,7 @@ declare var $: any; // jquery tanımalaması
 export class ExampleDirective implements OnInit {
 
   constructor(private element: ElementRef) {
+    console.log("Example directive!");
   }
   ngOnInit(): void {
     $(this.element.nativeElement).fadeOut(2000).fadeIn();
