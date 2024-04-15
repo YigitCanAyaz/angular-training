@@ -275,7 +275,13 @@ AppComponent => {{randomService.random}} -->
 
   <button (click)="showHide()">Show/Hide</button> -->
 
-  <h1 #h>App Component</h1>
+  <!-- <h1 #h>App Component</h1> -->
+
+  <app-child1>
+    Merhaba <br>
+    <input type="text" #i>
+  </app-child1>
+
   `,
   // styleUrls: ['./app.component.scss']
   styles: [".active{color:green;}"]
@@ -400,7 +406,7 @@ export class AppComponent implements OnInit, AfterViewInit{
     // console.log(this._ex);
     // console.log(this._list);
 
-    this.renderer.setStyle(this.h.nativeElement, "color", "red");
+    // this.renderer.setStyle(this.h.nativeElement, "color", "red");
     
   }
 
