@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Inject, OnInit, QueryList, TemplateRef, ViewChild, ViewChildren, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, QueryList, Renderer2, TemplateRef, ViewChild, ViewChildren, ViewContainerRef } from '@angular/core';
 import { CustomPipe } from './pipes/custom.pipe';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { capitalLetterValidator } from './validators/func';
@@ -269,18 +269,21 @@ AppComponent => {{randomService.random}} -->
 
   <app-child1></app-child1> -->
 
-  <p #p>A</p>
+  <!-- <p #p>A</p>
   <p #p *ngIf="visible">B</p>
   <p #p *ngIf="!visible">C</p>
 
-  <button (click)="showHide()">Show/Hide</button>
+  <button (click)="showHide()">Show/Hide</button> -->
+
+  <h1 #h>App Component</h1>
   `,
   // styleUrls: ['./app.component.scss']
   styles: [".active{color:green;}"]
 })
 export class AppComponent implements OnInit, AfterViewInit{
 
-  @ViewChildren("p") list: QueryList<ElementRef>;
+  // @ViewChildren("p") list: QueryList<ElementRef>;
+  @ViewChild("h", {static: true}) h: ElementRef;
 
   visible: boolean = true;
 
@@ -349,7 +352,8 @@ export class AppComponent implements OnInit, AfterViewInit{
 
   frm: FormGroup;
 //  @Inject("example") func: any
-  constructor(@Inject("productService")private productService: ProductService, private formBuilder: FormBuilder, public randomService: RandomService, private viewContainerRef: ViewContainerRef) {
+  constructor(@Inject("productService")private productService: ProductService, private formBuilder: FormBuilder, public randomService: RandomService, private viewContainerRef: ViewContainerRef,
+  private renderer: Renderer2) {
     // console.log(func());
     console.log(productService.getProducts());
     this.frm = formBuilder.group({
@@ -395,6 +399,8 @@ export class AppComponent implements OnInit, AfterViewInit{
     // console.log(this._child1Component + ' ngOnInit');
     // console.log(this._ex);
     // console.log(this._list);
+
+    this.renderer.setStyle(this.h.nativeElement, "color", "red");
     
   }
 
@@ -409,9 +415,9 @@ export class AppComponent implements OnInit, AfterViewInit{
 
     // console.log(this._list);
 
-    this.list.changes.subscribe({
-      next: data => console.log(data)
-    })
+    // this.list.changes.subscribe({
+    //   next: data => console.log(data)
+    // })
   }
 
   go() {
