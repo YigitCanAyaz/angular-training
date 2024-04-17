@@ -8,10 +8,27 @@ import { HomeComponent } from './app/components/standalone/home/home.component';
 import { AboutComponent } from './app/components/standalone/about/about.component';
 import { ProductComponent } from './app/components/standalone/product/product.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { importProvidersFrom, inject } from '@angular/core';
+import { APP_INITIALIZER, importProvidersFrom, inject } from '@angular/core';
 
 
-platformBrowserDynamic().bootstrapModule(AppModule)
+platformBrowserDynamic().bootstrapModule(AppModule, {
+  providers: [
+    // importProvidersFrom(HttpClientModule),
+    {
+      // provide: APP_INITIALIZER,
+      // useFactory: () => {
+      //   console.log("Öncelikli yapılandırmalar gerçekleştirildi...");
+      //   return null;
+      // }
+      provide: APP_INITIALIZER,
+      useFactory: (httpClient: HttpClient) => {
+        httpClient.get("./assets/config/appConfig.json")
+        .subscribe(configs => console.log(configs))
+      },
+      deps: [HttpClient]
+    }
+  ]
+})
   .catch(err => console.error(err));
 
 
