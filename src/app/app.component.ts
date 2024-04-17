@@ -8,6 +8,7 @@ import { RandomService } from './random.service';
 import { ChildComponent } from './components/ngtemplateoutlet/child/child.component';
 import { Child1Component } from './components/child1/child1.component';
 import { ExampleDirective } from './directives/example.directive';
+import {environment} from '../environments/environment'
 
 @Component({
   selector: 'app-root',
@@ -327,8 +328,8 @@ AppComponent => {{randomService.random}} -->
   </div>
 </nav>
 
-  <app-component1></app-component1>
-  <app-component2></app-component2>
+  <!-- <app-component1></app-component1>
+  <app-component2></app-component2> -->
   `,
   // styleUrls: ['./app.component.scss']
   styles: [".active{color:green;}", ".abc2{background-color: red}"]
@@ -408,6 +409,9 @@ export class AppComponent implements OnInit, AfterViewInit{
   constructor(@Inject("productService")private productService: ProductService, private formBuilder: FormBuilder, public randomService: RandomService, private viewContainerRef: ViewContainerRef,
   private renderer: Renderer2) {
     // console.log(func());
+    console.log(environment.production);
+    console.log(environment.apiEndPoint);
+    
     console.log(productService.getProducts());
     this.frm = formBuilder.group({
       name: ["", [Validators.required, Validators.minLength(3), capitalLetterValidator(3)]],

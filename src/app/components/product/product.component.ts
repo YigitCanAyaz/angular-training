@@ -34,11 +34,11 @@ export class ProductComponent implements OnInit{
   ngOnInit(): void {
 
     // router event
-    this.router.events.subscribe((event: RouterEvent) => {
-      if (event instanceof NavigationStart) {
-        console.log("NavigationStart", event);
-      }
-    });
+    // this.router.events.subscribe((event: RouterEvent) => {
+    //   if (event instanceof NavigationStart) {
+    //     console.log("NavigationStart", event);
+    //   }
+    // });
     console.log(this.activatedRoute.data.subscribe(data => {
       console.log(data);
     }))
