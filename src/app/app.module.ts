@@ -46,7 +46,9 @@ import { CustomStrategy } from './strategies/custom.strategy';
 import { StandaloneComponent } from './components/standalone/standalone.component';
 import { Standalone2Component } from './components/standalone2/standalone2.component';
 import {ChildComponent} from './components/ngtemplateoutlet/child/child.component';
-import { Child1Component } from './components/child1/child1.component'
+import { Child1Component } from './components/child1/child1.component';
+import { Component1Component } from './components/component1/component1.component';
+import { Component2Component } from './components/component2/component2.component'
 
 @NgModule({
   declarations: [
@@ -82,6 +84,8 @@ import { Child1Component } from './components/child1/child1.component'
     AdminComponent,
     UserComponent,
     Child1Component,
+    Component1Component,
+    Component2Component,
     // StandaloneComponent,
     // AddProductComponent,
     // DetailProductComponent,
