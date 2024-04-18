@@ -9,6 +9,7 @@ import { ChildComponent } from './components/ngtemplateoutlet/child/child.compon
 import { Child1Component } from './components/child1/child1.component';
 import { ExampleDirective } from './directives/example.directive';
 import {environment} from '../environments/environment'
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -407,10 +408,21 @@ export class AppComponent implements OnInit, AfterViewInit{
   frm: FormGroup;
 //  @Inject("example") func: any
   constructor(@Inject("productService")private productService: ProductService, private formBuilder: FormBuilder, public randomService: RandomService, private viewContainerRef: ViewContainerRef,
-  private renderer: Renderer2) {
+  private renderer: Renderer2, private httpClient: HttpClient) {
     // console.log(func());
-    console.log(environment.production);
-    console.log(environment.apiEndPoint);
+    // console.log(environment.production);
+    // console.log(environment.apiEndPoint);
+
+    var params = new HttpParams()
+      .set("id", "1")
+
+    httpClient.get("https://jsonplaceholder.typicode.com/posts", {params})
+      .subscribe({
+        next: datas => console.log(datas),
+        error : error => console.log(error)
+      })
+
+    // httpClient.post("", {}, )
     
     console.log(productService.getProducts());
     this.frm = formBuilder.group({
