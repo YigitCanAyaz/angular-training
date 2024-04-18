@@ -329,6 +329,8 @@ AppComponent => {{randomService.random}} -->
   </div>
 </nav>
 
+<button (click)="click()"></button>
+
   <!-- <app-component1></app-component1>
   <app-component2></app-component2> -->
   `,
@@ -336,6 +338,14 @@ AppComponent => {{randomService.random}} -->
   styles: [".active{color:green;}", ".abc2{background-color: red}"]
 })
 export class AppComponent implements OnInit, AfterViewInit{
+
+  click() {
+    this.httpClient.get("https://jsonplaceholder.typicode.com/posts")
+    .subscribe({
+      next: datas => console.log(datas),
+      error : error => console.log(error)
+    })
+  }
 
   // @ViewChildren("p") list: QueryList<ElementRef>;
   @ViewChild("h", {static: true}) h: ElementRef;
@@ -413,14 +423,16 @@ export class AppComponent implements OnInit, AfterViewInit{
     // console.log(environment.production);
     // console.log(environment.apiEndPoint);
 
-    var params = new HttpParams()
-      .set("id", "1")
+    // var params = new HttpParams()
+    //   .set("id", "1")
 
-    httpClient.get("https://jsonplaceholder.typicode.com/posts", {params})
-      .subscribe({
-        next: datas => console.log(datas),
-        error : error => console.log(error)
-      })
+    // httpClient.get("https://jsonplaceholder.typicode.com/posts", {params})
+    //   .subscribe({
+    //     next: datas => console.log(datas),
+    //     error : error => console.log(error)
+    //   })
+
+
 
     // httpClient.post("", {}, )
     

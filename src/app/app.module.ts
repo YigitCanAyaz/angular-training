@@ -20,7 +20,7 @@ import { Childb2Component } from './components/child_to_child_communication/chil
 import { ExampleComponent } from './components/example/example.component';
 import { LoggerService, ProductService } from './productservice';
 import { productServiceIT } from './injection-token';
-import {HttpClient, HttpClientModule} from '@angular/common/http'
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http'
 import { firstValueFrom } from 'rxjs';
 import { AComponent } from './components/a/a.component';
 import { BComponent } from './components/b/b.component';
@@ -49,6 +49,7 @@ import {ChildComponent} from './components/ngtemplateoutlet/child/child.componen
 import { Child1Component } from './components/child1/child1.component';
 import { Component1Component } from './components/component1/component1.component';
 import { Component2Component } from './components/component2/component2.component'
+import { MyInterceptor } from './my.interceptor';
 
 @NgModule({
   declarations: [
@@ -128,6 +129,9 @@ import { Component2Component } from './components/component2/component2.componen
   return new ProductService();
   }, 
   deps: [HttpClient]},
+
+  {provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true}
+
   ],
   bootstrap: [AppComponent]
 })
