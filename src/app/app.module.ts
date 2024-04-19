@@ -1,4 +1,4 @@
-import { DEFAULT_CURRENCY_CODE, NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -52,6 +52,8 @@ import { Component2Component } from './components/component2/component2.componen
 import { MyInterceptor } from './my.interceptor';
 import { PhotosComponent } from './components/photos/photos.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { CustomErrorHandler } from './custom.error.handler';
+import { CustomHttpInterceptor } from './custom-http.interceptor';
 
 @NgModule({
   declarations: [
@@ -134,7 +136,9 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
   }, 
   deps: [HttpClient]},
 
-  {provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true}
+  // {provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true},
+  {provide: ErrorHandler, useClass: CustomErrorHandler},
+  {provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true}
 
   ],
   bootstrap: [AppComponent]

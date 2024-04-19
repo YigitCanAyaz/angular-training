@@ -330,17 +330,24 @@ AppComponent => {{randomService.random}} -->
   </div>
 </nav>
 
-<button (click)="click()"></button>
+<!-- <button (click)="click()"></button> -->
 
   <!-- <app-component1></app-component1>
   <app-component2></app-component2> -->
 
-  <app-photos></app-photos>
+  <!-- <app-photos></app-photos> -->
+
+  <button (click)="throwError()">Throw Error</button>
   `,
   // styleUrls: ['./app.component.scss']
   styles: [".active{color:green;}", ".abc2{background-color: red}"]
 })
 export class AppComponent implements OnInit, AfterViewInit{
+
+  throwError() {
+    this.httpClient.get("www.google.com/naber").subscribe(data => console.log(data));
+    throw new Error("test hatası!");
+  }
 
   click() {
     this.httpClient.get("https://jsonplaceholder.typicode.com/posts")
@@ -436,6 +443,7 @@ export class AppComponent implements OnInit, AfterViewInit{
     //   })
 
 
+    
 
     // httpClient.post("", {}, )
 
