@@ -50,6 +50,8 @@ import { Child1Component } from './components/child1/child1.component';
 import { Component1Component } from './components/component1/component1.component';
 import { Component2Component } from './components/component2/component2.component'
 import { MyInterceptor } from './my.interceptor';
+import { PhotosComponent } from './components/photos/photos.component';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @NgModule({
   declarations: [
@@ -87,6 +89,7 @@ import { MyInterceptor } from './my.interceptor';
     Child1Component,
     Component1Component,
     Component2Component,
+    PhotosComponent,
     // StandaloneComponent,
     // AddProductComponent,
     // DetailProductComponent,
@@ -105,7 +108,8 @@ import { MyInterceptor } from './my.interceptor';
     CustomModule,
     StandaloneComponent,
     Standalone2Component,
-    ChildComponent
+    ChildComponent,
+    LazyLoadImageModule
     // RouterModule.forRoot(routes)
   ],
   providers: [

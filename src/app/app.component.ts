@@ -10,6 +10,7 @@ import { Child1Component } from './components/child1/child1.component';
 import { ExampleDirective } from './directives/example.directive';
 import {environment} from '../environments/environment'
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -333,6 +334,8 @@ AppComponent => {{randomService.random}} -->
 
   <!-- <app-component1></app-component1>
   <app-component2></app-component2> -->
+
+  <app-photos></app-photos>
   `,
   // styleUrls: ['./app.component.scss']
   styles: [".active{color:green;}", ".abc2{background-color: red}"]
@@ -417,7 +420,7 @@ export class AppComponent implements OnInit, AfterViewInit{
 
   frm: FormGroup;
 //  @Inject("example") func: any
-  constructor(@Inject("productService")private productService: ProductService, private formBuilder: FormBuilder, public randomService: RandomService, private viewContainerRef: ViewContainerRef,
+  constructor(private title: Title, @Inject("productService")private productService: ProductService, private formBuilder: FormBuilder, public randomService: RandomService, private viewContainerRef: ViewContainerRef,
   private renderer: Renderer2, private httpClient: HttpClient) {
     // console.log(func());
     // console.log(environment.production);
@@ -435,6 +438,8 @@ export class AppComponent implements OnInit, AfterViewInit{
 
 
     // httpClient.post("", {}, )
+
+    title.setTitle("Test başlık")
     
     console.log(productService.getProducts());
     this.frm = formBuilder.group({
