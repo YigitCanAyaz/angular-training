@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Inject, OnInit, QueryList, Renderer2, TemplateRef, ViewChild, ViewChildren, ViewContainerRef, WritableSignal, signal, computed, Signal, effect, EffectRef, untracked } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, QueryList, Renderer2, TemplateRef, ViewChild, ViewChildren, ViewContainerRef, WritableSignal, signal, computed, Signal, effect, EffectRef, untracked, inject } from '@angular/core';
 import { CustomPipe } from './pipes/custom.pipe';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { capitalLetterValidator } from './validators/func';
@@ -13,6 +13,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { interval } from 'rxjs/internal/observable/interval';
 import {toSignal} from '@angular/core/rxjs-interop'
+import { CustomStorageService } from './services/custom-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -345,11 +346,30 @@ AppComponent => {{randomService.random}} -->
 
   <!-- <button (click)="onCleanUp()">Tıkla</button> -->
   <!-- <button (click)="onClick()">Tıkla</button> -->
+
+  <button (click)="store()">Store</button>
   `,
   // styleUrls: ['./app.component.scss']
   styles: [".active{color:green;}", ".abc2{background-color: red}"]
 })
 export class AppComponent implements OnInit, AfterViewInit{
+
+  store(){
+    localStorage.setItem("name", "şuayip");
+    sessionStorage.setItem("name", "hilmi");
+
+    caches.open("user-cache").then(cache => {
+      cache.put("permissions", new Response("['select', 'update', 'delete']"));
+
+      cache.match("permissions").then(data => {
+        data?.text().then(_data => console.log(_data));
+      });
+    });
+
+    this.customStorage.setData = "adsasdsa";
+    console.log(this.customStorage.getData);
+
+  }
 
   // a : WritableSignal<number> = signal(3);
   // b : Signal<string> = computed(() => `a signal değişkenin yeni değeri : ${this.a()}`);
@@ -450,10 +470,14 @@ export class AppComponent implements OnInit, AfterViewInit{
 
   // Model Driven
 
+  customStorage = inject(CustomStorageService)
+
   frm: FormGroup;
 //  @Inject("example") func: any
   constructor(private title: Title, @Inject("productService")private productService: ProductService, private formBuilder: FormBuilder, public randomService: RandomService, private viewContainerRef: ViewContainerRef,
   private renderer: Renderer2, private httpClient: HttpClient) {
+
+
     // console.log(func());
     // console.log(environment.production);
     // console.log(environment.apiEndPoint);
@@ -546,15 +570,15 @@ export class AppComponent implements OnInit, AfterViewInit{
     });
 
     // name değişirse çalışır.
-    this.frm.get("name").valueChanges.subscribe({
-      next: data => {
-        console.log(data);
-      }
-    });
+    // this.frm.get("name").valueChanges.subscribe({
+    //   next: data => {
+    //     console.log(data);
+    //   }
+    // });
 
-    this.s = toSignal(this.o, {initialValue: 100});
+    // this.s = toSignal(this.o, {initialValue: 100});
 
-    effect(() => console.log(`s signal değeri : ${this.s()}`))
+    // effect(() => console.log(`s signal değeri : ${this.s()}`))
 
   }
 
@@ -583,7 +607,8 @@ export class AppComponent implements OnInit, AfterViewInit{
     // console.log(this._list);
 
     // this.renderer.setStyle(this.h.nativeElement, "color", "red");
-    
+
+
   }
 
   ngAfterViewInit() {
