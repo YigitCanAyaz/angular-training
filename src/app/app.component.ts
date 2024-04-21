@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Inject, OnInit, QueryList, Renderer2, TemplateRef, ViewChild, ViewChildren, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, QueryList, Renderer2, TemplateRef, ViewChild, ViewChildren, ViewContainerRef, WritableSignal, signal, computed, Signal, effect, EffectRef, untracked } from '@angular/core';
 import { CustomPipe } from './pipes/custom.pipe';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { capitalLetterValidator } from './validators/func';
@@ -11,6 +11,8 @@ import { ExampleDirective } from './directives/example.directive';
 import {environment} from '../environments/environment'
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
+import { interval } from 'rxjs/internal/observable/interval';
+import {toSignal} from '@angular/core/rxjs-interop'
 
 @Component({
   selector: 'app-root',
@@ -293,7 +295,7 @@ AppComponent => {{randomService.random}} -->
     Css2 Yazı Denemesi
   </p> -->
 
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -328,7 +330,7 @@ AppComponent => {{randomService.random}} -->
       </form>
     </div>
   </div>
-</nav>
+</nav> -->
 
 <!-- <button (click)="click()"></button> -->
 
@@ -337,12 +339,35 @@ AppComponent => {{randomService.random}} -->
 
   <!-- <app-photos></app-photos> -->
 
-  <button (click)="throwError()">Throw Error</button>
+  <!-- <button (click)="throwError()">Throw Error</button> -->
+
+  <!-- <button (click)="onComputed()">Tıkla</button> -->
+
+  <!-- <button (click)="onCleanUp()">Tıkla</button> -->
+  <!-- <button (click)="onClick()">Tıkla</button> -->
   `,
   // styleUrls: ['./app.component.scss']
   styles: [".active{color:green;}", ".abc2{background-color: red}"]
 })
 export class AppComponent implements OnInit, AfterViewInit{
+
+  // a : WritableSignal<number> = signal(3);
+  // b : Signal<string> = computed(() => `a signal değişkenin yeni değeri : ${this.a()}`);
+
+  // onComputed() {
+  //   this.a.update(data => data + 1);
+  //   console.log(this.b());
+  // }
+
+
+  // val : WritableSignal<number> = signal(3);
+  // val2 : WritableSignal<number> = signal(5);
+
+
+  // onCleanUp() {
+  //   this.val.update(data => data + 1);
+  // }
+
 
   throwError() {
     this.httpClient.get("www.google.com/naber").subscribe(data => console.log(data));
@@ -442,8 +467,59 @@ export class AppComponent implements OnInit, AfterViewInit{
     //     error : error => console.log(error)
     //   })
 
-
+    // const _effect : EffectRef = effect(() => {
+    //   console.log (`Z değeri: ${this.z()}`);
+    //   this.z.update(data => data * 3);
     
+    // });
+
+    // _effect.destroy();
+
+    // effect((onCleanUp) => {
+    //   console.log(this.val());
+
+    //   const timer = setTimeout(() => {
+    //     console.log("........");
+    //     console.log("Processing");
+    //     console.log("........");
+    //   }, 2000);
+
+    //   untracked(() => {
+    //     this.val2.update(data => data + 1);
+    //     console.log("Y " + this.val2())
+    //   });
+      
+    //   onCleanUp(() => {
+    //     clearTimeout(timer);
+    //   });
+    // })
+
+
+    let x: WritableSignal<number> = signal(3);
+
+    console.log(x());
+
+    x.set(5);
+
+    console.log(x());
+
+    x.set(x() * 3);
+    console.log(x());
+
+    x.update(data => data * 5);
+
+    console.log(x());
+
+    let personSignal: WritableSignal<Person> = signal({
+      name: "Gençay"
+    });
+    
+    console.log(personSignal());
+
+    personSignal.mutate(data => data.name = "Hüseyin");
+
+    console.log(personSignal());
+
 
     // httpClient.post("", {}, )
 
@@ -476,9 +552,21 @@ export class AppComponent implements OnInit, AfterViewInit{
       }
     });
 
-    
+    this.s = toSignal(this.o, {initialValue: 100});
+
+    effect(() => console.log(`s signal değeri : ${this.s()}`))
 
   }
+
+  o = interval(1000);
+  s: Signal<any>;
+
+  z : WritableSignal<number> = signal(3);
+
+  onClick() {
+    this.z.update(data => data + 1);
+  }
+
 
 
   // @ViewChild("h") _h1: ElementRef;
@@ -599,4 +687,8 @@ export class AppComponent implements OnInit, AfterViewInit{
     {personName: 'Hilmi', age: 35}
   ]
 
+}
+
+export class Person {
+  name: string;
 }
