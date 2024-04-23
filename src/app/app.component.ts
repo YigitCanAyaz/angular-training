@@ -370,7 +370,7 @@ AppComponent => {{randomService.random}} -->
     1111
   } -->
 
-  <ul>
+  <!-- <ul>
     <ng-template *ngIf="numbers.length > 0; else noNumbers">
       <li *ngFor="let number of numbers">{{number}}</li>
     </ng-template>
@@ -387,7 +387,7 @@ AppComponent => {{randomService.random}} -->
     @empty {
       <li><strong>No numbers</strong></li>
     }
-  </ul>
+  </ul> -->
 
   <!-- @switch (data) {
     @case(1){
