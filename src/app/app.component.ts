@@ -15,6 +15,8 @@ import { interval } from 'rxjs/internal/observable/interval';
 import {toSignal} from '@angular/core/rxjs-interop'
 import { CustomStorageService } from './services/custom-storage.service';
 
+declare var $: any;
+
 @Component({
   selector: 'app-root',
   // templateUrl: './app.component.html',
@@ -347,12 +349,15 @@ AppComponent => {{randomService.random}} -->
   <!-- <button (click)="onCleanUp()">Tıkla</button> -->
   <!-- <button (click)="onClick()">Tıkla</button> -->
 
-  <button (click)="store()">Store</button>
+  <!-- <button (click)="store()">Store</button> -->
+  <div #div class="d">merhaba</div>
+  <button (click)="click(div)">click</button>
   `,
   // styleUrls: ['./app.component.scss']
   styles: [".active{color:green;}", ".abc2{background-color: red}"]
 })
 export class AppComponent implements OnInit, AfterViewInit{
+
 
   store(){
     localStorage.setItem("name", "şuayip");
@@ -394,12 +399,17 @@ export class AppComponent implements OnInit, AfterViewInit{
     throw new Error("test hatası!");
   }
 
-  click() {
-    this.httpClient.get("https://jsonplaceholder.typicode.com/posts")
-    .subscribe({
-      next: datas => console.log(datas),
-      error : error => console.log(error)
-    })
+  // click() {
+  //   this.httpClient.get("https://jsonplaceholder.typicode.com/posts")
+  //   .subscribe({
+  //     next: datas => console.log(datas),
+  //     error : error => console.log(error)
+  //   })
+  // }
+
+  click(div) {
+    // template variable ile yakaladık
+    // $(div).fadeOut().fadeIn();
   }
 
   // @ViewChildren("p") list: QueryList<ElementRef>;
@@ -717,3 +727,9 @@ export class AppComponent implements OnInit, AfterViewInit{
 export class Person {
   name: string;
 }
+
+$(document).ready(() => {
+  $("button").click(() => {
+    $(".d").fadeOut().fadeIn();
+  })
+})
