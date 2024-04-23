@@ -8,14 +8,16 @@ import { ActivatedRoute, NavigationStart, Router, RouterEvent } from '@angular/r
     Product <br>
     <!-- <a [routerLink]="['detail', 2]">Products Detail</a> <br> -->
     <router-outlet></router-outlet>
-
+    
     <br>
-    <ul>
-      <li *ngFor="let photo of photos">
-      <a [routerLink]="[photo.id]">{{photo.url}}</a>
-      </li>
-    </ul>
-  `
+      <ul>
+        @for (photo of photos; track photo) {
+          <li>
+            <a [routerLink]="[photo.id]">{{photo.url}}</a>
+          </li>
+        }
+      </ul>
+    `
 })
 export class ProductComponent implements OnInit{
   // constructor(private httpClient : HttpClient){}

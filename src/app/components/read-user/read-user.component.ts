@@ -5,7 +5,9 @@ import { UserService } from 'src/app/services/user.service';
   selector: 'app-read-user',
   template: `
   <ul>
-    <li *ngFor="let name of userService.users">{{name}}</li>
+    @for (name of userService.users; track name) {
+      <li>{{name}}</li>
+    }
   </ul>
   `
 })

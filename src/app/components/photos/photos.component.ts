@@ -3,9 +3,11 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-photos',
   template: `
-  <ng-container *ngFor="let photo of photoLinks;">
-    <img *ngIf="photo !=null" width="256" height="256" [lazyLoad]="photo">
-  </ng-container>
+  @for (photo of photoLinks; track photo) {
+    @if (photo !=null) {
+      <img width="256" height="256" [lazyLoad]="photo">
+    }
+  }
   `,
 })
 export class PhotosComponent {

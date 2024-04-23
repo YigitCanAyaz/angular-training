@@ -350,14 +350,70 @@ AppComponent => {{randomService.random}} -->
   <!-- <button (click)="onClick()">Tıkla</button> -->
 
   <!-- <button (click)="store()">Store</button> -->
-  <div #div class="d">merhaba</div>
-  <button (click)="click(div)">click</button>
+  <!-- <div #div class="d">merhaba</div>
+  <button (click)="click(div)">click</button> -->
+
+  <!-- <div *ngIf="condition; else r">Ddshdsdsksdk</div>
+  <ng-template #r>1111</ng-template> -->
+
+
+  <!-- @if(condition; as result){
+    adjsasjdsaj <br/>
+    {{result}}
+  } 
+
+  @else if(3 == 3){
+    2222
+  }
+
+  @else {
+    1111
+  } -->
+
+  <ul>
+    <ng-template *ngIf="numbers.length > 0; else noNumbers">
+      <li *ngFor="let number of numbers">{{number}}</li>
+    </ng-template>
+    <ng-template #noNumbers>
+      <li><strong>No numbers</strong></li>
+    </ng-template>
+  </ul>
+  <hr>
+  <ul>
+    @for(number of numbers; track number; let i = $index; let f = $first; let l = $last){
+      <li>{{number}} - {{i}} -- {{f}} -- {{l}}</li>
+    }
+
+    @empty {
+      <li><strong>No numbers</strong></li>
+    }
+  </ul>
+
+  <!-- @switch (data) {
+    @case(1){
+      1'e eşit
+    }
+    @case(2){
+      2'ye eşit
+    }
+    @case(3){
+      3'e eşit
+    }
+
+    @default {
+      Hiçbiri
+    }
+  } -->
+
   `,
   // styleUrls: ['./app.component.scss']
   styles: [".active{color:green;}", ".abc2{background-color: red}"]
 })
 export class AppComponent implements OnInit, AfterViewInit{
 
+  condition: boolean = true;
+  numbers: number[] = [1, 2, 3, 4, 5];
+  data: number = 5;
 
   store(){
     localStorage.setItem("name", "şuayip");
@@ -550,7 +606,7 @@ export class AppComponent implements OnInit, AfterViewInit{
     
     console.log(personSignal());
 
-    personSignal.mutate(data => data.name = "Hüseyin");
+    // personSignal.mutate(data => data.name = "Hüseyin");
 
     console.log(personSignal());
 
