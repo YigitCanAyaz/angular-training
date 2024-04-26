@@ -55,6 +55,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CustomErrorHandler } from './custom.error.handler';
 import { CustomHttpInterceptor } from './custom-http.interceptor';
 import { HhomeComponent } from './components/hhome/hhome.component';
+import { LoadComponentDirective } from './directives/load-component.directive';
 
 @NgModule({
   declarations: [
@@ -114,6 +115,7 @@ import { HhomeComponent } from './components/hhome/hhome.component';
     ChildComponent,
     LazyLoadImageModule,
     HhomeComponent,
+    LoadComponentDirective
     // RouterModule.forRoot(routes)
   ],
   providers: [

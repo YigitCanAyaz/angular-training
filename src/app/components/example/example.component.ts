@@ -3,9 +3,10 @@ import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit,
 @Component({
   selector: 'app-example',
   template: `
-  Example <br>
-  <input type="text" [(ngModel)]="data">
-  <ng-content></ng-content>
+  <!-- Example <br> -->
+  <!-- <input type="text" [(ngModel)]="data">
+  <ng-content></ng-content> -->
+  ExampleComponent
   `
 })
 export class ExampleComponent implements OnChanges, OnInit, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {

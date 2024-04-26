@@ -14,6 +14,8 @@ import { Title } from '@angular/platform-browser';
 import { interval } from 'rxjs/internal/observable/interval';
 import {toSignal} from '@angular/core/rxjs-interop'
 import { CustomStorageService } from './services/custom-storage.service';
+import { LoadComponentService } from './services/load-component.service';
+import { LoadComponentDirective } from './directives/load-component.directive';
 
 declare var $: any;
 
@@ -420,12 +422,29 @@ AppComponent => {{randomService.random}} -->
   @error {
     Error...
   }
+
+  <br>
+  <button (click)="loadComponent()">Load</button>
+  <div>
+    <ng-template appLoadComponent>
+    
+    </ng-template>
+  </div>
   `,
   // styleUrls: ['./app.component.scss']
   styles: [".active{color:green;}", ".abc2{background-color: red}"]
 })
 export class AppComponent implements OnInit, AfterViewInit{
+  loadComponentService: LoadComponentService = inject(LoadComponentService);
 
+  @ViewChild(LoadComponentDirective, {static: true}) loadComponentDirective
+    : LoadComponentDirective;
+
+  async loadComponent() {
+    this.loadComponentService.loadComponent(this.loadComponentDirective.viewContainerRef
+      , await((await (import("./components/example/example.component"))).ExampleComponent)
+    );
+  }
   // condition: boolean = true;
   numbers: number[] = [1, 2, 3, 4, 5];
   data: number = 5;
