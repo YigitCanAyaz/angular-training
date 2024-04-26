@@ -54,6 +54,7 @@ import { PhotosComponent } from './components/photos/photos.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CustomErrorHandler } from './custom.error.handler';
 import { CustomHttpInterceptor } from './custom-http.interceptor';
+import { HhomeComponent } from './components/hhome/hhome.component';
 
 @NgModule({
   declarations: [
@@ -111,7 +112,8 @@ import { CustomHttpInterceptor } from './custom-http.interceptor';
     StandaloneComponent,
     Standalone2Component,
     ChildComponent,
-    LazyLoadImageModule
+    LazyLoadImageModule,
+    HhomeComponent,
     // RouterModule.forRoot(routes)
   ],
   providers: [

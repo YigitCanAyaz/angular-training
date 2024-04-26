@@ -405,15 +405,34 @@ AppComponent => {{randomService.random}} -->
     }
   } -->
 
+  <br>
+  <button #btn>Tıkla</button>
+  <br>
+  @defer(on interaction(btn); prefetch on idle) {
+    <app-hhome></app-hhome>
+  }
+  @placeholder {
+    Placeholder
+  }
+  @loading(after 150ms; minimum 1500ms;) {
+    <marquee>Loading...</marquee>
+  }
+  @error {
+    Error...
+  }
   `,
   // styleUrls: ['./app.component.scss']
   styles: [".active{color:green;}", ".abc2{background-color: red}"]
 })
 export class AppComponent implements OnInit, AfterViewInit{
 
-  condition: boolean = true;
+  // condition: boolean = true;
   numbers: number[] = [1, 2, 3, 4, 5];
   data: number = 5;
+
+  changeCondition() {
+    this.condition = !this.condition;
+  }
 
   store(){
     localStorage.setItem("name", "şuayip");
@@ -539,9 +558,16 @@ export class AppComponent implements OnInit, AfterViewInit{
   customStorage = inject(CustomStorageService)
 
   frm: FormGroup;
+
+  condition: boolean = false;
 //  @Inject("example") func: any
   constructor(private title: Title, @Inject("productService")private productService: ProductService, private formBuilder: FormBuilder, public randomService: RandomService, private viewContainerRef: ViewContainerRef,
   private renderer: Renderer2, private httpClient: HttpClient) {
+
+    // for (let index = 0; index < 10000; index++) {
+    //   console.log(index);
+      
+    // }
 
 
     // console.log(func());
