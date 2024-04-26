@@ -28,7 +28,7 @@ import { CreateUserComponent } from './components/create-user/create-user.compon
 import { ReadUserComponent } from './components/read-user/read-user.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { RouterModule } from '@angular/router';
+import { RouterModule, withViewTransitions } from '@angular/router';
 import { routes } from './routes/routes';
 import { ErrorComponent } from './components/error/error.component';
 import { APP_BASE_HREF } from '@angular/common';
@@ -143,7 +143,6 @@ import { LoadComponentDirective } from './directives/load-component.directive';
   // {provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true},
   {provide: ErrorHandler, useClass: CustomErrorHandler},
   {provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true}
-
   ],
   bootstrap: [AppComponent]
 })

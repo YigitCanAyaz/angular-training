@@ -407,7 +407,7 @@ AppComponent => {{randomService.random}} -->
     }
   } -->
 
-  <br>
+  <!-- <br>
   <button #btn>Tıkla</button>
   <br>
   @defer(on interaction(btn); prefetch on idle) {
@@ -429,7 +429,12 @@ AppComponent => {{randomService.random}} -->
     <ng-template appLoadComponent>
     
     </ng-template>
-  </div>
+  </div> -->
+
+  <br>
+  <br>
+  <a routerLink="persons">Persons</a><br>
+  <router-outlet></router-outlet>
   `,
   // styleUrls: ['./app.component.scss']
   styles: [".active{color:green;}", ".abc2{background-color: red}"]

@@ -66,13 +66,26 @@ const routes: Routes = [
   {path: "standalone2", loadComponent : () => 
   import("../app/components/standalone2/standalone2.component")
   .then(s => s.Standalone2Component)},
+
+  {
+    path: "persons",
+    loadComponent: async () => 
+      (await import("../app/components/persons/persons.component")).PersonsComponent
+  },
+
+  {
+    path: "person-detail/:id",
+    loadComponent: async () => 
+      (await import("../app/components/person-detail/person-detail.component")).PersonDetailComponent
+  }
 ];
 
 @NgModule({
   // imports: [RouterModule.forRoot(routes, {useHash: true})],
   // imports: [RouterModule.forRoot(routes, {preloadingStrategy: CustomStrategy})],
   imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabledBlocking'
+    initialNavigation: 'enabledBlocking',
+    enableViewTransitions: true
 })],
   exports: [RouterModule]
 })

@@ -3,7 +3,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { StandaloneComponent } from './app/components/standalone/standalone.component';
-import { PreloadAllModules, provideRouter } from '@angular/router';
+import { PreloadAllModules, provideRouter, withViewTransitions } from '@angular/router';
 import { HomeComponent } from './app/components/standalone/home/home.component';
 import { AboutComponent } from './app/components/standalone/about/about.component';
 import { ProductComponent } from './app/components/standalone/product/product.component';
