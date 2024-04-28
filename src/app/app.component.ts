@@ -16,6 +16,8 @@ import {toSignal} from '@angular/core/rxjs-interop'
 import { CustomStorageService } from './services/custom-storage.service';
 import { LoadComponentService } from './services/load-component.service';
 import { LoadComponentDirective } from './directives/load-component.directive';
+import { BaseComponent } from './base.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 declare var $: any;
 
@@ -439,7 +441,7 @@ AppComponent => {{randomService.random}} -->
   // styleUrls: ['./app.component.scss']
   styles: [".active{color:green;}", ".abc2{background-color: red}"]
 })
-export class AppComponent implements OnInit, AfterViewInit{
+export class AppComponent extends BaseComponent implements OnInit, AfterViewInit{
   loadComponentService: LoadComponentService = inject(LoadComponentService);
 
   @ViewChild(LoadComponentDirective, {static: true}) loadComponentDirective
@@ -493,10 +495,10 @@ export class AppComponent implements OnInit, AfterViewInit{
   // }
 
 
-  throwError() {
-    this.httpClient.get("www.google.com/naber").subscribe(data => console.log(data));
-    throw new Error("test hatası!");
-  }
+  // throwError() {
+  //   this.httpClient.get("www.google.com/naber").subscribe(data => console.log(data));
+  //   throw new Error("test hatası!");
+  // }
 
   // click() {
   //   this.httpClient.get("https://jsonplaceholder.typicode.com/posts")
@@ -581,122 +583,132 @@ export class AppComponent implements OnInit, AfterViewInit{
 
   customStorage = inject(CustomStorageService)
 
+  title1: Title = inject(Title);
+  router1: Router = inject(Router);
+  activatedRoute1: ActivatedRoute = inject(ActivatedRoute);
+
+  // title: Title = this.getTitle();
+
+  // getTitle() {
+  //   return inject(Title);
+  // }
+
   frm: FormGroup;
 
   condition: boolean = false;
 //  @Inject("example") func: any
-  constructor(private title: Title, @Inject("productService")private productService: ProductService, private formBuilder: FormBuilder, public randomService: RandomService, private viewContainerRef: ViewContainerRef,
-  private renderer: Renderer2, private httpClient: HttpClient) {
-
-    // for (let index = 0; index < 10000; index++) {
-    //   console.log(index);
+  // constructor(@Inject("productService")private productService: ProductService, private formBuilder: FormBuilder, public randomService: RandomService, private viewContainerRef: ViewContainerRef,
+  // private renderer: Renderer2, private httpClient: HttpClient, title: Title, router: Router, activatedRoute: ActivatedRoute) {
+  //   super(title, router, activatedRoute);
+  //   // for (let index = 0; index < 10000; index++) {
+  //   //   console.log(index);
       
-    // }
+  //   // }
 
 
-    // console.log(func());
-    // console.log(environment.production);
-    // console.log(environment.apiEndPoint);
+  //   // console.log(func());
+  //   // console.log(environment.production);
+  //   // console.log(environment.apiEndPoint);
 
-    // var params = new HttpParams()
-    //   .set("id", "1")
+  //   // var params = new HttpParams()
+  //   //   .set("id", "1")
 
-    // httpClient.get("https://jsonplaceholder.typicode.com/posts", {params})
-    //   .subscribe({
-    //     next: datas => console.log(datas),
-    //     error : error => console.log(error)
-    //   })
+  //   // httpClient.get("https://jsonplaceholder.typicode.com/posts", {params})
+  //   //   .subscribe({
+  //   //     next: datas => console.log(datas),
+  //   //     error : error => console.log(error)
+  //   //   })
 
-    // const _effect : EffectRef = effect(() => {
-    //   console.log (`Z değeri: ${this.z()}`);
-    //   this.z.update(data => data * 3);
+  //   // const _effect : EffectRef = effect(() => {
+  //   //   console.log (`Z değeri: ${this.z()}`);
+  //   //   this.z.update(data => data * 3);
     
-    // });
+  //   // });
 
-    // _effect.destroy();
+  //   // _effect.destroy();
 
-    // effect((onCleanUp) => {
-    //   console.log(this.val());
+  //   // effect((onCleanUp) => {
+  //   //   console.log(this.val());
 
-    //   const timer = setTimeout(() => {
-    //     console.log("........");
-    //     console.log("Processing");
-    //     console.log("........");
-    //   }, 2000);
+  //   //   const timer = setTimeout(() => {
+  //   //     console.log("........");
+  //   //     console.log("Processing");
+  //   //     console.log("........");
+  //   //   }, 2000);
 
-    //   untracked(() => {
-    //     this.val2.update(data => data + 1);
-    //     console.log("Y " + this.val2())
-    //   });
+  //   //   untracked(() => {
+  //   //     this.val2.update(data => data + 1);
+  //   //     console.log("Y " + this.val2())
+  //   //   });
       
-    //   onCleanUp(() => {
-    //     clearTimeout(timer);
-    //   });
-    // })
+  //   //   onCleanUp(() => {
+  //   //     clearTimeout(timer);
+  //   //   });
+  //   // })
 
 
-    let x: WritableSignal<number> = signal(3);
+  //   let x: WritableSignal<number> = signal(3);
 
-    console.log(x());
+  //   console.log(x());
 
-    x.set(5);
+  //   x.set(5);
 
-    console.log(x());
+  //   console.log(x());
 
-    x.set(x() * 3);
-    console.log(x());
+  //   x.set(x() * 3);
+  //   console.log(x());
 
-    x.update(data => data * 5);
+  //   x.update(data => data * 5);
 
-    console.log(x());
+  //   console.log(x());
 
-    let personSignal: WritableSignal<Person> = signal({
-      name: "Gençay"
-    });
+  //   let personSignal: WritableSignal<Person> = signal({
+  //     name: "Gençay"
+  //   });
     
-    console.log(personSignal());
+  //   console.log(personSignal());
 
-    // personSignal.mutate(data => data.name = "Hüseyin");
+  //   // personSignal.mutate(data => data.name = "Hüseyin");
 
-    console.log(personSignal());
+  //   console.log(personSignal());
 
 
-    // httpClient.post("", {}, )
+  //   // httpClient.post("", {}, )
 
-    title.setTitle("Test başlık")
+  //   // title.setTitle("Test başlık")
     
-    console.log(productService.getProducts());
-    this.frm = formBuilder.group({
-      name: ["", [Validators.required, Validators.minLength(3), capitalLetterValidator(3)]],
-      surname: ["", Validators.required],
-      email: ["", [Validators.required, Validators.email]],
-      tel: [""],
-      address: formBuilder.group({
-        country: [""],
-        city: [""],
-        address: [""]
-      })
-    }, {validators : []});
+  //   console.log(productService.getProducts());
+  //   this.frm = formBuilder.group({
+  //     name: ["", [Validators.required, Validators.minLength(3), capitalLetterValidator(3)]],
+  //     surname: ["", Validators.required],
+  //     email: ["", [Validators.required, Validators.email]],
+  //     tel: [""],
+  //     address: formBuilder.group({
+  //       country: [""],
+  //       city: [""],
+  //       address: [""]
+  //     })
+  //   }, {validators : []});
 
-    // formda herhangi bir şey değişirse çalışır.
-    this.frm.valueChanges.subscribe({
-      next: data => {
-        console.log(data);
-      }
-    });
+  //   // formda herhangi bir şey değişirse çalışır.
+  //   this.frm.valueChanges.subscribe({
+  //     next: data => {
+  //       console.log(data);
+  //     }
+  //   });
 
-    // name değişirse çalışır.
-    // this.frm.get("name").valueChanges.subscribe({
-    //   next: data => {
-    //     console.log(data);
-    //   }
-    // });
+  //   // name değişirse çalışır.
+  //   // this.frm.get("name").valueChanges.subscribe({
+  //   //   next: data => {
+  //   //     console.log(data);
+  //   //   }
+  //   // });
 
-    // this.s = toSignal(this.o, {initialValue: 100});
+  //   // this.s = toSignal(this.o, {initialValue: 100});
 
-    // effect(() => console.log(`s signal değeri : ${this.s()}`))
+  //   // effect(() => console.log(`s signal değeri : ${this.s()}`))
 
-  }
+  // }
 
   o = interval(1000);
   s: Signal<any>;
@@ -724,7 +736,9 @@ export class AppComponent implements OnInit, AfterViewInit{
 
     // this.renderer.setStyle(this.h.nativeElement, "color", "red");
 
+    // const title: Title = inject(Title);
 
+    this.title.setTitle("asdasd");
   }
 
   ngAfterViewInit() {
